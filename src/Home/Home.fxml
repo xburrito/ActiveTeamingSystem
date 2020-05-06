@@ -5,12 +5,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="926.0" style="-fx-background-color: #BFF0FF#BFF0FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="926.0" style="-fx-background-color: #BFF0FF#BFF0FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="563.0" prefWidth="229.0" style="-fx-background-color: #00C5FF#00C5FF;">
+      <VBox prefHeight="662.0" prefWidth="240.0" style="-fx-background-color: #00C5FF#00C5FF;">
          <children>
-            <ImageView fitHeight="180.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="184.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
             <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="     User (You)               " textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
@@ -54,6 +55,18 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="363.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="     Settings                    " textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/Menu/settings.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="     Sign off                    " textFill="WHITE">
                <graphic>
@@ -63,6 +76,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
             </Button>
          </children>
       </VBox>

@@ -19,7 +19,8 @@
                </image>
                <VBox.margin>
                   <Insets bottom="10.0" top="30.0" />
-               </VBox.margin></ImageView>
+               </VBox.margin>
+            </ImageView>
             <Label text="[Insert Username Here]">
                <VBox.margin>
                   <Insets />
@@ -28,7 +29,7 @@
                   <Insets bottom="15.0" />
                </padding>
             </Label>
-            <Button alignment="CENTER" graphicTextGap="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #0097C4#0097C4;" text="Home Page              " textFill="WHITE">
+            <Button alignment="CENTER" graphicTextGap="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF #00C5FF#00C5FF;" text="Home Page              " textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -38,8 +39,9 @@
                </graphic>
                <VBox.margin>
                   <Insets />
-               </VBox.margin></Button>
-            <Button alignment="CENTER" graphicTextGap="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="Messages                 " textFill="WHITE">
+               </VBox.margin>
+            </Button>
+            <Button alignment="CENTER" graphicTextGap="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF #00C5FF#00C5FF;" text="Messages                 " textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -90,7 +92,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" graphicTextGap="21.0" layoutX="10.0" layoutY="363.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="Settings                    " textFill="WHITE">
+            <Button alignment="CENTER" graphicTextGap="21.0" layoutX="10.0" layoutY="363.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #0097C4#0097C4 #0097C4#0097C4 #0097C4#0097C4 #0097C4#0097C4;" text="Settings                    " textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -102,7 +104,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" graphicTextGap="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="Sign off                   " textFill="WHITE">
+            <Button alignment="CENTER" graphicTextGap="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="Sign off             " textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>

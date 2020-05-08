@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="926.0" style="-fx-background-color: #BFF0FF#BFF0FF;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXTextArea focusColor="#00c5ff" labelFloat="true" layoutX="36.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="300.0" promptText="Enter Username:" unFocusColor="#a4a4a4">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextArea>
+      <JFXPasswordField focusColor="#00c5ff" labelFloat="true" layoutX="36.0" layoutY="391.0" prefHeight="29.0" prefWidth="300.0" promptText="Password:" unFocusColor="#a4a4a4">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXTextArea focusColor="#00c5ff" labelFloat="true" layoutX="36.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="300.0" promptText="Email:" unFocusColor="#a4a4a4">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextArea>
+      <JFXPasswordField focusColor="#00c5ff" labelFloat="true" layoutX="36.0" layoutY="437.0" prefHeight="29.0" prefWidth="300.0" promptText="Confirm password:" unFocusColor="#a4a4a4">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXButton buttonType="RAISED" layoutX="313.0" layoutY="565.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" ripplerFill="#00c5ff" styleClass="loginButton" text="Register now" textFill="#00c5ff">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </JFXButton>
+      <VBox fx:id="content_area" alignment="CENTER" prefHeight="69.0" prefWidth="926.0" style="-fx-background-color: #00C5FF#00C5FF;">
+         <children>
+            <Label text="Registration Form">
+               <font>
+                  <Font name="Arial Bold" size="34.0" />
+               </font>
+            </Label>
+            <Label text="Fill the form to register" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Label layoutX="518.0" layoutY="171.0" text="Reference:">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextArea focusColor="#00c5ff" labelFloat="true" layoutX="518.0" layoutY="207.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="300.0" promptText="Enter Referrer Username:" unFocusColor="#a4a4a4">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextArea>
+      <Label layoutX="518.0" layoutY="274.0" text="Referrer's Status:">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXRadioButton layoutX="518.0" layoutY="320.0" text="Ordinary User">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXRadioButton>
+      <JFXRadioButton layoutX="518.0" layoutY="357.0" text="VIP User">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXRadioButton>
+      <JFXRadioButton layoutX="518.0" layoutY="391.0" text="Not Sure">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXRadioButton>
+      <JFXRadioButton layoutX="518.0" layoutY="454.0" text="I do not have a reference">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </JFXRadioButton>
+      <JFXTextArea focusColor="#00c5ff" labelFloat="true" layoutX="36.0" layoutY="297.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="300.0" promptText="Date of Birth:" unFocusColor="#a4a4a4">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextArea>
+   </children>
+</AnchorPane>

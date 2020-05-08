@@ -1,2 +1,1 @@
-
-#Active Teaming System
+Active Teaming System

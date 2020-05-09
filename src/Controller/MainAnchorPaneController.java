@@ -8,7 +8,7 @@ import javafx.scene.layout.StackPane;
 
 
 // This is the main controller for the GUI, its connected to all other controllers
-public class MainController {
+public class MainAnchorPaneController {
     //private ModelClass theModel;
 
     //@FXML private AnchorPane browserAnchorPane;
@@ -37,10 +37,10 @@ public class MainController {
     @FXML private AnchorPane settingsAnchorPane;
     //@FXML private AnchorPane logOutAnchorPane;  // create later
 
-    @FXML private HomeController homeController;
-    @FXML private BrowseController browseController;
-    @FXML private LoginController loginController;
-    @FXML private RegisterController registerController;
+    @FXML private HomeAnchorPaneController homeAnchorPaneController;
+    @FXML private BrowseAnchorPaneController browseAnchorPaneController;
+    @FXML private LoginAnchorPaneController loginAnchorPaneController;
+    @FXML private RegisterAnchorPaneController registerAnchorPaneController;
 
 
     @FXML private void initialize() {
@@ -49,11 +49,11 @@ public class MainController {
         // send mainController to homeController
         //homeController.injectMainController(this);
         // send mainController to browseController
-        browseController.injectMainController(this);
+        browseAnchorPaneController.injectMainController(this);
         // send mainController to loginController
-        loginController.injectMainController(this);
+        loginAnchorPaneController.injectMainController(this);
         // send mainController to registerController
-        registerController.injectMainController(this);
+        registerAnchorPaneController.injectMainController(this);
     }
 
     String buttonDefaultColor = "-fx-background-color:#00C5FF;";
@@ -175,7 +175,7 @@ public class MainController {
     }
 
     public void displayLoginView(){
-        loginController.showLoginView();
+        loginAnchorPaneController.showLoginView();
     }
 
 }

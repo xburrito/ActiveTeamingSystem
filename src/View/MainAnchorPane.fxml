@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="926.0" style="-fx-background-color: #c42021;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="926.0" style="-fx-background-color: #c42021;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainAnchorPaneController">
    <children>
       <AnchorPane fx:id="sidebarAnchorPane" prefHeight="662.0" prefWidth="240.0" style="-fx-background-color: #BFF0FF;">
          <children>
@@ -79,19 +79,19 @@
          <children>
             <StackPane prefHeight="662.0" prefWidth="669.0">
                <children>
-                  <fx:include fx:id="homeAnchorPane" source="Home.fxml" />
-                  <fx:include fx:id="messagesAnchorPane" source="Messages.fxml" />
-                  <fx:include fx:id="groupsAnchorPane" source="Groups.fxml" />
-                  <fx:include fx:id="projectsAnchorPane" source="Projects.fxml" />
-                  <fx:include fx:id="votingReputationAnchorPane" source="Voting_Reputation.fxml" />
-                  <fx:include fx:id="settingsAnchorPane" source="Settings.fxml" />
+                  <fx:include fx:id="homeAnchorPane" source="HomeAnchorPane.fxml" />
+                  <fx:include fx:id="messagesAnchorPane" source="MessagesAnchorPane.fxml" />
+                  <fx:include fx:id="groupsAnchorPane" source="GroupsAnchorPane.fxml" />
+                  <fx:include fx:id="projectsAnchorPane" source="ProjectsAnchorPane.fxml" />
+                  <fx:include fx:id="votingReputationAnchorPane" source="Voting_ReputationAnchorPane.fxml" />
+                  <fx:include fx:id="settingsAnchorPane" source="SettingsAnchorPane.fxml" />
                </children>
             </StackPane>
          </children>
       </AnchorPane>
       <!--Note: name of fx:id should be "fx:id"Controller.java, in order for injection to work. -->
-      <fx:include fx:id="register" source="Register.fxml" />
-      <fx:include fx:id="login" source="Login.fxml" />
-      <fx:include fx:id="browse" source="Browse.fxml" />
+      <fx:include fx:id="registerAnchorPane" source="RegisterAnchorPane.fxml" />
+      <fx:include fx:id="loginAnchorPane" source="LoginAnchorPane.fxml" />
+      <fx:include fx:id="browseAnchorPane" source="BrowseAnchorPane.fxml" />
    </children>
 </AnchorPane>

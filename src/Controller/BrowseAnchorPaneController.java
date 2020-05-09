@@ -3,10 +3,8 @@ package Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 
-public class BrowseController {
+public class BrowseAnchorPaneController {
 
     @FXML private JFXButton buttonLogin;
     @FXML private JFXButton buttonRegister;
@@ -14,11 +12,11 @@ public class BrowseController {
 
     String buttonDefaultColor = "-fx-background-color:#00C5FF;";
 
-    private MainController mainController;
+    private MainAnchorPaneController mainAnchorPaneController;
 
     // gets mainController
-    void injectMainController(MainController mainController) {
-        this.mainController = mainController;
+    void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
+        this.mainAnchorPaneController = mainAnchorPaneController;
     }
 
     @FXML private void handleButtonAction(ActionEvent event) {
@@ -28,7 +26,7 @@ public class BrowseController {
 
             //mainController.getMainAnchorPane().toFront();
             //loginAnchor
-            mainController.displayLoginView();
+            mainAnchorPaneController.displayLoginView();
             //mainController.getLoginAnchorPane();
             //borderPaneTransactions.setVisible(false);
         } else if (event.getSource() == buttonRegister) {

@@ -1,4 +1,4 @@
-package Home;
+package Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;

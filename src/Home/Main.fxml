@@ -6,118 +6,88 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="926.0" style="-fx-background-color: #BFF0FF#BFF0FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="926.0" style="-fx-background-color: #c42021;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Home.MainController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="662.0" prefWidth="240.0" style="-fx-background-color: #00C5FF#00C5FF;">
+      <AnchorPane fx:id="sidebarAnchorPane" prefHeight="662.0" prefWidth="240.0" style="-fx-background-color: #BFF0FF;">
          <children>
-            <ImageView fitHeight="90.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="90.0" fitWidth="86.0" layoutX="86.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Assets/Menu/User.png" />
                </image>
-               <VBox.margin>
-                  <Insets bottom="10.0" top="30.0" />
-               </VBox.margin></ImageView>
-            <Label text="[Insert Username Here]">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+            </ImageView>
+            <Label layoutX="65.0" layoutY="134.0" text="[Insert Username Here]">
                <padding>
                   <Insets bottom="15.0" />
                </padding>
             </Label>
-            <Button alignment="CENTER" graphicTextGap="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #0097C4#0097C4;" text="Home Page              " textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/Menu/Home.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin></Button>
-            <Button alignment="CENTER" graphicTextGap="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="Messages                 " textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/Menu/Messages.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button alignment="CENTER" graphicTextGap="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="Groups                      " textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/Menu/groups.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button alignment="CENTER" graphicTextGap="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="Projects                    " textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/Menu/Projects.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button alignment="CENTER" graphicTextGap="21.0" layoutX="10.0" layoutY="370.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="Voting / Reputation" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/Menu/Voting.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
+            <Button fx:id="buttonHomePage" alignment="CENTER" graphicTextGap="21.0" layoutY="235.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF;" text="Home Page" textAlignment="RIGHT" textFill="WHITE" />
+            <Button fx:id="buttonMessages" alignment="CENTER" graphicTextGap="21.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF;" text="Messages" textFill="WHITE" />
+            <Button fx:id="buttonGroups" alignment="CENTER" graphicTextGap="21.0" layoutX="1.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF;" text="Groups" textFill="WHITE" />
+            <Button fx:id="buttonProjects" alignment="CENTER" graphicTextGap="21.0" layoutX="1.0" layoutY="415.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF;" text="Projects" textFill="WHITE" />
+            <Button fx:id="buttonVotingReputation" alignment="CENTER" graphicTextGap="21.0" layoutY="475.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF;" text="Voting / Reputation" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
             </Button>
-            <Button alignment="CENTER" graphicTextGap="21.0" layoutX="10.0" layoutY="363.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="Settings                    " textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/Menu/settings.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button alignment="CENTER" graphicTextGap="21.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF#00C5FF;" text="Sign off                   " textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/Menu/Lock.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
+            <Button fx:id="buttonSettings" alignment="CENTER" graphicTextGap="21.0" layoutX="1.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF;" text="Settings" textFill="WHITE" />
+            <Button fx:id="buttonLogOut" alignment="CENTER" graphicTextGap="21.0" layoutX="1.0" layoutY="595.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="257.0" style="-fx-background-color: #00C5FF;" text="Log Out" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
             </Button>
+            <ImageView fitHeight="33.0" fitWidth="53.0" layoutX="21.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/Menu/Home.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="53.0" layoutX="22.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/Menu/Messages.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="53.0" layoutX="23.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/Menu/groups.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="53.0" layoutX="21.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/Menu/Projects.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="53.0" layoutX="23.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/Menu/Voting.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="53.0" layoutX="26.0" layoutY="546.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/Menu/settings.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="53.0" layoutX="27.0" layoutY="613.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/Menu/Lock.png" />
+               </image>
+            </ImageView>
          </children>
-      </VBox>
+      </AnchorPane>
+      <AnchorPane layoutX="257.0" prefHeight="662.0" prefWidth="669.0" style="-fx-background-color: #D21A;">
+         <children>
+            <StackPane prefHeight="662.0" prefWidth="669.0">
+               <children>
+                  <fx:include fx:id="homeAnchorPane" source="Home.fxml" />
+                  <fx:include fx:id="messagesAnchorPane" source="Messages.fxml" />
+                  <fx:include fx:id="groupsAnchorPane" source="Groups.fxml" />
+                  <fx:include fx:id="projectsAnchorPane" source="Projects.fxml" />
+                  <fx:include fx:id="votingReputationAnchorPane" source="Voting_Reputation.fxml" />
+                  <fx:include fx:id="settingsAnchorPane" source="Settings.fxml" />
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

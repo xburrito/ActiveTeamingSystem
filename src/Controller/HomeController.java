@@ -9,6 +9,7 @@ public class HomeController {
 
     // gets mainController
     public void injectMainController(MainController mainController) {
+        System.out.println("sdfa");
         this.mainController = mainController;
     }
 

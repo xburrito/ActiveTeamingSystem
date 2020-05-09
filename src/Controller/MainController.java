@@ -17,6 +17,9 @@ public class MainController {
 
     // main pane
     @FXML private AnchorPane mainAnchorPane;
+    @FXML private AnchorPane browseAnchorPane;
+    @FXML private AnchorPane login;
+    @FXML private AnchorPane registerAnchorPane;
 
     // sidebar
     @FXML private AnchorPane sidebarAnchorPane;
@@ -24,7 +27,7 @@ public class MainController {
             buttonVotingReputation, buttonSettings, buttonLogOut;
 
     // content
-    @FXML private AnchorPane ContentAnchorPane;
+    @FXML private AnchorPane contentAnchorPane;
     @FXML private StackPane mainContentStackPanePane;
     @FXML private AnchorPane homeAnchorPane;
     @FXML private AnchorPane messagesAnchorPane;
@@ -34,16 +37,17 @@ public class MainController {
     @FXML private AnchorPane settingsAnchorPane;
     //@FXML private AnchorPane logOutAnchorPane;  // create later
 
-    private HomeController homeController;
-    private BrowseController browseController;
-    private LoginController loginController;
-    private RegisterController registerController;
+    @FXML private HomeController homeController;
+    @FXML private BrowseController browseController;
+    @FXML private LoginController loginController;
+    @FXML private RegisterController registerController;
 
-    private void initialize() {
+
+    @FXML private void initialize() {
         // CONNECT all other controller to MainController
-
+        System.out.println("sdfa");
         // send mainController to homeController
-        homeController.injectMainController(this);
+        //homeController.injectMainController(this);
         // send mainController to browseController
         browseController.injectMainController(this);
         // send mainController to loginController
@@ -143,8 +147,35 @@ public class MainController {
 
             //logOutAnchorPane.toFront();
         }
-
+//        else if (event.getSource() == browseController.getButton()) {
+//            browseController.getButton().setStyle("-fx-background-color:#696969;");
+//            //buttonRegister.setStyle(buttonDefaultColor);
+//
+//            loginAnchorPane.toFront();
+//            System.out.println("WTF");
+//            //mainController.getLoginAnchorPane();
+//            //borderPaneTransactions.setVisible(false);
+//        }
     } // end handle button
 
+    // brings LoginArchorPane to the front.
+    public void getLoginAnchorPane(){
+        //loginAnchorPane.toFront();
+        //loginController.getLoginAchorPaneX().toFront();
+        login.toFront();
+        //browseAnchorPane.setVisible(false);
+    }
+
+    @FXML public void getRegisterAnchorPane() {
+        //loginAnchorPane.toFront();
+    }
+
+    public AnchorPane getMainAnchorPane(){
+        return mainAnchorPane;
+    }
+
+    public void displayLoginView(){
+        loginController.showLoginView();
+    }
 
 }

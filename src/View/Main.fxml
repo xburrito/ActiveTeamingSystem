@@ -75,7 +75,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="257.0" prefHeight="662.0" prefWidth="669.0" style="-fx-background-color: #D21A;">
+      <AnchorPane fx:id="contentAnchorPane" layoutX="257.0" prefHeight="662.0" prefWidth="669.0" style="-fx-background-color: rgba(221,34,17,0.67);">
          <children>
             <StackPane prefHeight="662.0" prefWidth="669.0">
                <children>
@@ -89,8 +89,9 @@
             </StackPane>
          </children>
       </AnchorPane>
-      <fx:include fx:id="registerAnchorPane" source="Register.fxml" />
-      <fx:include fx:id="loginAnchorPane" source="Login.fxml" />
-      <fx:include fx:id="browseAnchorPane" source="Browse.fxml" />
+      <!--Note: name of fx:id should be "fx:id"Controller.java, in order for injection to work. -->
+      <fx:include fx:id="register" source="Register.fxml" />
+      <fx:include fx:id="login" source="Login.fxml" />
+      <fx:include fx:id="browse" source="Browse.fxml" />
    </children>
 </AnchorPane>

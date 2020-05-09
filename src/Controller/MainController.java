@@ -35,10 +35,21 @@ public class MainController {
     //@FXML private AnchorPane logOutAnchorPane;  // create later
 
     private HomeController homeController;
+    private BrowseController browseController;
+    private LoginController loginController;
+    private RegisterController registerController;
 
     private void initialize() {
+        // CONNECT all other controller to MainController
+
         // send mainController to homeController
         homeController.injectMainController(this);
+        // send mainController to browseController
+        browseController.injectMainController(this);
+        // send mainController to loginController
+        loginController.injectMainController(this);
+        // send mainController to registerController
+        registerController.injectMainController(this);
     }
 
     String buttonDefaultColor = "-fx-background-color:#00C5FF;";

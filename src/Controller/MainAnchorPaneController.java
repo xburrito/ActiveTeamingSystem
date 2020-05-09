@@ -18,7 +18,7 @@ public class MainAnchorPaneController {
     // main pane
     @FXML private AnchorPane mainAnchorPane;
     @FXML private AnchorPane browseAnchorPane;
-    @FXML private AnchorPane login;
+    @FXML private AnchorPane loginAnchorPane;
     @FXML private AnchorPane registerAnchorPane;
 
     // sidebar
@@ -145,7 +145,8 @@ public class MainAnchorPaneController {
             buttonSettings.setStyle(buttonDefaultColor);
             buttonLogOut.setStyle("-fx-background-color:#696969;");
 
-            //logOutAnchorPane.toFront();
+            displayBrowseView();
+
         }
 //        else if (event.getSource() == browseController.getButton()) {
 //            browseController.getButton().setStyle("-fx-background-color:#696969;");
@@ -162,7 +163,7 @@ public class MainAnchorPaneController {
     public void getLoginAnchorPane(){
         //loginAnchorPane.toFront();
         //loginController.getLoginAchorPaneX().toFront();
-        login.toFront();
+        loginAnchorPane.toFront();
         //browseAnchorPane.setVisible(false);
     }
 
@@ -174,8 +175,27 @@ public class MainAnchorPaneController {
         return mainAnchorPane;
     }
 
+
+
+    // brings "mainAnchorPane" to the front.
+    public void displayMainView(){
+        contentAnchorPane.toFront();
+        sidebarAnchorPane.toFront();
+    }
+
+    // brings browseAnchorPane to the front.
+    public void displayBrowseView(){
+        browseAnchorPane.toFront();
+    }
+
+    // brings loginAnchorPane to the front.
     public void displayLoginView(){
-        loginAnchorPaneController.showLoginView();
+        loginAnchorPane.toFront();
+    }
+
+    // brings registerAnchorPane to the front.
+    public void displayRegisterView(){
+        registerAnchorPane.toFront();
     }
 
 }

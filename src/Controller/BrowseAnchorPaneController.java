@@ -19,20 +19,14 @@ public class BrowseAnchorPaneController {
         this.mainAnchorPaneController = mainAnchorPaneController;
     }
 
+    // handle button action of Browse View
     @FXML private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == buttonLogin) {
-            buttonLogin.setStyle("-fx-background-color:#696969;");
-            buttonRegister.setStyle(buttonDefaultColor);
-
-            //mainController.getMainAnchorPane().toFront();
-            //loginAnchor
+            // display login view
             mainAnchorPaneController.displayLoginView();
-            //mainController.getLoginAnchorPane();
-            //borderPaneTransactions.setVisible(false);
         } else if (event.getSource() == buttonRegister) {
-            //buttonLogin.setStyle(buttonDefaultColor);
-            //buttonRegister.setStyle("-fx-background-color:#696969;");
-            //mainController.getRegisterAnchorPane();
+            // display register view
+            mainAnchorPaneController.displayRegisterView();
         }
     }
 

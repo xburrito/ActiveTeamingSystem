@@ -53,7 +53,7 @@
                   <Font name="Arial" size="15.0" />
                </font>
             </Label>
-            <JFXButton buttonType="RAISED" layoutX="26.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" ripplerFill="#00c5ff" styleClass="loginButton" text="Login" textFill="#00c5ff">
+            <JFXButton fx:id="buttonUserLogin" buttonType="RAISED" layoutX="26.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="300.0" ripplerFill="#00c5ff" styleClass="loginButton" text="Login" textFill="#00c5ff">
                <font>
                   <Font name="Arial Black" size="14.0" />
                </font>
@@ -73,5 +73,6 @@
             </Label>
          </children>
       </Pane>
+      <JFXButton fx:id="buttonGoBack" layoutX="371.0" layoutY="18.0" onAction="#handleButtonAction" style="-fx-background-color: #40bad5;" text="Go Back" />
    </children>
 </AnchorPane>

@@ -89,5 +89,8 @@
             </StackPane>
          </children>
       </AnchorPane>
+      <fx:include fx:id="registerAnchorPane" source="Register.fxml" />
+      <fx:include fx:id="loginAnchorPane" source="Login.fxml" />
+      <fx:include fx:id="browseAnchorPane" source="Browse.fxml" />
    </children>
 </AnchorPane>

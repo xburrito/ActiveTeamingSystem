@@ -11,6 +11,10 @@ import javafx.scene.layout.StackPane;
 public class MainController {
     //private ModelClass theModel;
 
+    //@FXML private AnchorPane browserAnchorPane;
+    //@FXML private AnchorPane loginAnchorPane;
+    //@FXML private AnchorPane registerAnchorPane;
+
     // main pane
     @FXML private AnchorPane mainAnchorPane;
 

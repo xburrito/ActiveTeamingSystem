@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
+
+// This is the main controller for the GUI, its connected to all other controllers
 public class MainController {
     //private ModelClass theModel;
 

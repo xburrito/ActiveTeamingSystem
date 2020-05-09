@@ -79,11 +79,12 @@
          <children>
             <StackPane prefHeight="662.0" prefWidth="669.0">
                <children>
+                  <!--Note: name of fx:id should be "fx:id"Controller.java, in order for injection to work. -->
                   <fx:include fx:id="homeAnchorPane" source="HomeAnchorPane.fxml" />
                   <fx:include fx:id="messagesAnchorPane" source="MessagesAnchorPane.fxml" />
                   <fx:include fx:id="groupsAnchorPane" source="GroupsAnchorPane.fxml" />
                   <fx:include fx:id="projectsAnchorPane" source="ProjectsAnchorPane.fxml" />
-                  <fx:include fx:id="votingReputationAnchorPane" source="Voting_ReputationAnchorPane.fxml" />
+                  <fx:include fx:id="votingReputationAnchorPane" source="VotingReputationAnchorPane.fxml" />
                   <fx:include fx:id="settingsAnchorPane" source="SettingsAnchorPane.fxml" />
                </children>
             </StackPane>

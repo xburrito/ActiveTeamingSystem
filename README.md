@@ -4,10 +4,10 @@
 
 Team Q Participants:
 
-Gabriel Espinoza\n
-Albert Chang\n
-Orion Çadri\n
-Ide\n
+- Gabriel Espinoza
+- Albert Chang
+- Orion Çadri
+- Ide
 
 -----
 

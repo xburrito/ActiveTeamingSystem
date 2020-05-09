@@ -18,7 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage; // set primary stage
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/Main.fxml"));
         primaryStage.setTitle("Active Teaming System");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();

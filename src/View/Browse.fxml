@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="926.0" style="-fx-background-color: #BFF0FF#BFF0FF;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="847.0" layoutY="18.0" text="Register" textFill="#00c5ff">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="198.0" layoutY="35.0" prefHeight="65.0" prefWidth="649.0" text="Active Teaming System">
+         <font>
+            <Font name="Arial Black" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="785.0" layoutY="18.0" text="Log in" textFill="#00c5ff">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+   </children>
+</AnchorPane>

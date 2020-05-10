@@ -1,6 +1,6 @@
 package Model;
 
-public class UserDB {
+public class User {
 
     private int DOB;
     private int dateJoined;
@@ -14,7 +14,7 @@ public class UserDB {
     private String status;
 
     // Constructor
-    public UserDB(){
+    public User(){
         DOB = 0;
         dateJoined = 0;
         userID = 0;
@@ -28,7 +28,7 @@ public class UserDB {
     }
 
     // Constructor with parameters
-    public UserDB(int DOB, int dateJoined, int userID, String password, String email, String username, String lname, String fname, int repScore, String status){
+    public User(int DOB, int dateJoined, int userID, String password, String email, String username, String lname, String fname, int repScore, String status){
         this.DOB = DOB;
         this.dateJoined = dateJoined;
         this.userID = userID;

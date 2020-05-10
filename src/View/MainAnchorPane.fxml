@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #c42021;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainAnchorPaneController">
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #c42021;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainAnchorPaneController">
    <children>
       <AnchorPane fx:id="sidebarAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="258.0" style="-fx-background-color: #BFF0FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -23,7 +23,7 @@
                   <Insets bottom="15.0" />
                </padding>
             </Label>
-            <Button fx:id="buttonHomePage" alignment="CENTER" graphicTextGap="21.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="258.0" style="-fx-background-color: #00C5FF;" text="Controller Page" textAlignment="RIGHT" textFill="WHITE" />
+            <Button fx:id="buttonHomePage" alignment="CENTER" graphicTextGap="21.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="258.0" style="-fx-background-color: #00C5FF;" text="Home" textAlignment="RIGHT" textFill="WHITE" />
             <Button fx:id="buttonMessages" alignment="CENTER" graphicTextGap="21.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="258.0" style="-fx-background-color: #00C5FF;" text="Messages" textFill="WHITE" />
             <Button fx:id="buttonGroups" alignment="CENTER" graphicTextGap="21.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="258.0" style="-fx-background-color: #00C5FF;" text="Groups" textFill="WHITE" />
             <Button fx:id="buttonProjects" alignment="CENTER" graphicTextGap="21.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="258.0" style="-fx-background-color: #00C5FF;" text="Projects" textFill="WHITE" />

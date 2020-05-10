@@ -62,7 +62,7 @@ public class MainAnchorPaneController {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == buttonHomePage) {
-            buttonHomePage.setStyle("-fx-background-color:#696969;");
+            buttonHomePage.setStyle("-fx-background-color:#00909e;");
             buttonMessages.setStyle(buttonDefaultColor);
             buttonGroups.setStyle(buttonDefaultColor);
             buttonProjects.setStyle(buttonDefaultColor);
@@ -80,7 +80,7 @@ public class MainAnchorPaneController {
         }
         else if (event.getSource() == buttonMessages) {
             buttonHomePage.setStyle(buttonDefaultColor);
-            buttonMessages.setStyle("-fx-background-color:#696969;");
+            buttonMessages.setStyle("-fx-background-color:#00909e;");
             buttonGroups.setStyle(buttonDefaultColor);
             buttonProjects.setStyle(buttonDefaultColor);
             buttonVotingReputation.setStyle(buttonDefaultColor);
@@ -95,7 +95,7 @@ public class MainAnchorPaneController {
         else if (event.getSource() == buttonGroups) {
             buttonHomePage.setStyle(buttonDefaultColor);
             buttonMessages.setStyle(buttonDefaultColor);
-            buttonGroups.setStyle("-fx-background-color:#696969;");
+            buttonGroups.setStyle("-fx-background-color:#00909e;");
             buttonProjects.setStyle(buttonDefaultColor);
             buttonVotingReputation.setStyle(buttonDefaultColor);
             buttonSettings.setStyle(buttonDefaultColor);
@@ -107,7 +107,7 @@ public class MainAnchorPaneController {
             buttonHomePage.setStyle(buttonDefaultColor);
             buttonMessages.setStyle(buttonDefaultColor);
             buttonGroups.setStyle(buttonDefaultColor);
-            buttonProjects.setStyle("-fx-background-color:#696969;");
+            buttonProjects.setStyle("-fx-background-color:#00909e;");
             buttonVotingReputation.setStyle(buttonDefaultColor);
             buttonSettings.setStyle(buttonDefaultColor);
             buttonLogOut.setStyle(buttonDefaultColor);
@@ -119,7 +119,7 @@ public class MainAnchorPaneController {
             buttonMessages.setStyle(buttonDefaultColor);
             buttonGroups.setStyle(buttonDefaultColor);
             buttonProjects.setStyle(buttonDefaultColor);
-            buttonVotingReputation.setStyle("-fx-background-color:#696969;");
+            buttonVotingReputation.setStyle("-fx-background-color:#00909e;");
             buttonSettings.setStyle(buttonDefaultColor);
             buttonLogOut.setStyle(buttonDefaultColor);
 
@@ -131,7 +131,7 @@ public class MainAnchorPaneController {
             buttonGroups.setStyle(buttonDefaultColor);
             buttonProjects.setStyle(buttonDefaultColor);
             buttonVotingReputation.setStyle(buttonDefaultColor);
-            buttonSettings.setStyle("-fx-background-color:#696969;");
+            buttonSettings.setStyle("-fx-background-color:#00909e;");
             buttonLogOut.setStyle(buttonDefaultColor);
 
             settingsAnchorPane.toFront();
@@ -143,7 +143,7 @@ public class MainAnchorPaneController {
             buttonProjects.setStyle(buttonDefaultColor);
             buttonVotingReputation.setStyle(buttonDefaultColor);
             buttonSettings.setStyle(buttonDefaultColor);
-            buttonLogOut.setStyle("-fx-background-color:#696969;");
+            buttonLogOut.setStyle("-fx-background-color:#00909e;");
 
             displayBrowseView();
 

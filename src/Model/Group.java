@@ -1,6 +1,6 @@
-// package Model;
+package Model;// package Model;
 
-public class GroupsDB{
+public class Group {
 
   private int group_ID;
   private String group_Name;
@@ -8,14 +8,14 @@ public class GroupsDB{
   private int member_count;
 
   // Default Constructor
-  public GroupsDB(){
+  public Group(){
     group_ID = 0;
     group_Name = null;
     group_Leader = null;
   }
 
   // Constructor with parameters
-  public GroupsDB(int group_ID, String group_Name, String group_Leader){
+  public Group(int group_ID, String group_Name, String group_Leader){
     this.group_ID = group_ID;
     this.group_Name = group_Name;
     this.group_Leader = group_Leader;

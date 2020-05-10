@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ToggleGroup;
 
 public class RegisterAnchorPaneController {
     private MainAnchorPaneController mainAnchorPaneController;
@@ -13,15 +14,36 @@ public class RegisterAnchorPaneController {
     // buttons
     @FXML private JFXButton buttonGoBack;
     @FXML private JFXButton buttonSubmitForm;
-    //@FXML private JFXRadioButton radioButton;
+    ToggleGroup group = new ToggleGroup();
+    @FXML private JFXRadioButton radioButtonOU;
+    @FXML private JFXRadioButton radioButtonVIP;
+    @FXML private JFXRadioButton radioButtonNS;
+    @FXML private JFXRadioButton radioButtonNO;
 
     // fields
+    @FXML private JFXTextArea fieldUsername;
+    @FXML private JFXTextArea fieldEmail;
     @FXML private JFXDatePicker datePickerDOB;
+    @FXML private JFXTextArea fieldPassword;
+    @FXML private JFXTextArea fieldPassConfirm;
+    @FXML private JFXTextArea fieldReference;
+
+
+//.setSelected(true);
 
 
     // gets mainController
     public void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
         this.mainAnchorPaneController = mainAnchorPaneController;
+    }
+
+    @FXML private void initialize(){
+        // add all radioButtons to a group
+        radioButtonOU.setToggleGroup(group);
+        radioButtonVIP.setToggleGroup(group);
+        radioButtonNS.setToggleGroup(group);
+        radioButtonNO.setToggleGroup(group);
+
     }
 
     // handle button action on Browse View

@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 
 public class BrowseAnchorPaneController {
 
-    @FXML private JFXButton buttonLogin;
-    @FXML private JFXButton buttonRegister;
+    //Buttons
+    @FXML private JFXButton buttonGoBack;
+    @FXML private JFXButton buttonLoadMore;
+
     //@FXML private Button buttonLoadMore; create later
 
     String buttonDefaultColor = "-fx-background-color:#00C5FF;";
@@ -21,17 +23,12 @@ public class BrowseAnchorPaneController {
 
     // handle button action of Browse View
     @FXML private void handleButtonAction(ActionEvent event) {
-        if (event.getSource() == buttonLogin) {
-            // display login view
-            mainAnchorPaneController.displayLoginView();
-        } else if (event.getSource() == buttonRegister) {
+        if (event.getSource() == buttonLoadMore) {
+            // LOAD MORE CONTENT
+        } else if (event.getSource() == buttonGoBack) {
             // display register view
-            mainAnchorPaneController.displayRegisterView();
+            mainAnchorPaneController.displayLoginView();
         }
-    }
-
-    public JFXButton getButton(){
-        return buttonLogin;
     }
 
 }

@@ -8,6 +8,8 @@ public class RegisterAnchorPaneController {
     private MainAnchorPaneController mainAnchorPaneController;
 
     @FXML private JFXButton buttonGoBack;
+    @FXML private JFXButton buttonSubmitForm;
+
 
     // gets mainController
     public void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
@@ -17,9 +19,12 @@ public class RegisterAnchorPaneController {
     // handle button action of Browse View
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        if (event.getSource() == buttonGoBack) {
+        if (event.getSource() == buttonSubmitForm) {
+            // SEND FORM "NOTIFICATION" TO SU
+        }
+        else if (event.getSource() == buttonGoBack) {
             // display browser view
-            mainAnchorPaneController.displayBrowseView();
+            mainAnchorPaneController.displayLoginView();
         }
     }
 

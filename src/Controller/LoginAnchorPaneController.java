@@ -9,14 +9,14 @@ import javafx.scene.layout.AnchorPane;
 
 public class LoginAnchorPaneController {
     private MainAnchorPaneController mainAnchorPaneController;
-    @FXML private Button buttonLogin; // from browser view
-    @FXML private Button buttonRegister;
-    //@FXML private Button buttonLoadMore; create later
+
+    // Layouts
     @FXML private AnchorPane loginAnchorPane;
-    @FXML private JFXButton buttonGoBack;
-    @FXML private JFXButton buttonUserLogin; // from log in view
 
-
+    // Buttons
+    @FXML private Button buttonRegister;
+    @FXML private JFXButton buttonLogin;
+    @FXML private JFXButton buttonBrowseGuest;
 
     // gets mainController
     public void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
@@ -25,12 +25,17 @@ public class LoginAnchorPaneController {
 
     // handle button action of Browse View
     @FXML private void handleButtonAction(ActionEvent event) {
-        if (event.getSource() == buttonGoBack) {
-            // display browser view
-            mainAnchorPaneController.displayBrowseView();
-        } else if (event.getSource() == buttonUserLogin) {
+        if (event.getSource() == buttonLogin) {
             // display main view
             mainAnchorPaneController.displayMainView();
+        }
+        else if (event.getSource() == buttonRegister) {
+            // display browser view
+            mainAnchorPaneController.displayRegisterView();
+        }
+        else if (event.getSource() == buttonBrowseGuest) {
+            // display browser view
+            mainAnchorPaneController.displayBrowseView();
         }
     }
 

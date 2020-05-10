@@ -90,9 +90,9 @@
             </StackPane>
          </children>
       </AnchorPane>
+      <fx:include fx:id="browseAnchorPane" source="BrowseAnchorPane.fxml" />
       <!--Note: name of fx:id should be "fx:id"Controller.java, in order for injection to work. -->
       <fx:include fx:id="registerAnchorPane" source="RegisterAnchorPane.fxml" />
       <fx:include fx:id="loginAnchorPane" source="LoginAnchorPane.fxml" />
-      <fx:include fx:id="browseAnchorPane" source="BrowseAnchorPane.fxml" />
    </children>
 </AnchorPane>

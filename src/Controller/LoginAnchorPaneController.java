@@ -33,9 +33,9 @@ public class LoginAnchorPaneController {
     @FXML private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == buttonLogin) {
             // for debugging ony: display credentials entered
-            String username = fieldEmail.getText();
+            String email = fieldEmail.getText();
             String password = fieldPassword.getText();
-            System.out.println("username: " + username);
+            System.out.println("username: " + email);
             System.out.println("passwords:" + password);
 
             // validate credentials

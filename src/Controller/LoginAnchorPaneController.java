@@ -18,6 +18,8 @@ public class LoginAnchorPaneController {
     @FXML private JFXButton buttonLogin;
     @FXML private JFXButton buttonBrowseGuest;
 
+    // Fields
+
     // gets mainController
     public void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
         this.mainAnchorPaneController = mainAnchorPaneController;

@@ -20,6 +20,7 @@ public class Main extends Application {
         this.primaryStage = primaryStage; // set primary stage
         Parent root = FXMLLoader.load(getClass().getResource("../View/MainAnchorPane.fxml"));
         primaryStage.setTitle("Active Teaming System");
+        primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root)); //new Scene(root, 1000, 700)  don't add dimensions if using SceneBuilder so we let SB set the dimensions
         primaryStage.show();
         this.primaryStage.setOnCloseRequest(e -> System.exit(0));

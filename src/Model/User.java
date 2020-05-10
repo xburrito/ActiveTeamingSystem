@@ -1,9 +1,8 @@
 package Model;
 
 public class User {
-
-    private int DOB;
-    private int dateJoined;
+    private String DOB;
+    private String dateJoined;
     private int userID;
     private String password;
     private String email;
@@ -15,8 +14,8 @@ public class User {
 
     // Constructor
     public User(){
-        DOB = 0;
-        dateJoined = 0;
+        DOB = null;
+        dateJoined = null;
         userID = 0;
         password = null;
         email = null;
@@ -28,7 +27,7 @@ public class User {
     }
 
     // Constructor with parameters
-    public User(int DOB, int dateJoined, int userID, String password, String email, String username, String lname, String fname, int repScore, String status){
+    public User(String DOB, String dateJoined, int userID, String password, String email, String username, String lname, String fname, int repScore, String status){
         this.DOB = DOB;
         this.dateJoined = dateJoined;
         this.userID = userID;
@@ -42,10 +41,10 @@ public class User {
     }
 
     // Getters
-    public int getDOB(){
+    public String getDOB(){
         return DOB;
     }
-    public int getDateJoined(){
+    public String getDateJoined(){
         return dateJoined;
     }
     public int getUserID(){
@@ -74,10 +73,10 @@ public class User {
     }
 
     // Setters
-    public void setDOB(int DOB){
+    public void setDOB(String DOB){
         this.DOB = DOB;
     }
-    public void setDateJoined(int dateJoined){
+    public void setDateJoined(String dateJoined){
         this.dateJoined = dateJoined;
     }
     public void setUserID(int userID){
@@ -104,4 +103,11 @@ public class User {
     public void setStatus(String status){
         this.status = status;
     }
-}
+
+    // utility methods
+    public String toString() {
+        String str = "\n" + "[" + DOB + ", " + dateJoined + ", " + userID + ", " + password + ", " + email + ", " + username + ", " + lname + ", " + fname + ", " + repScore + ", " + status + "]";
+		return str;
+    }
+
+} // end User

@@ -9,7 +9,6 @@ public class HomeAnchorPaneController {
 
     // gets mainController
     public void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
-        System.out.println("sdfa");
         this.mainAnchorPaneController = mainAnchorPaneController;
     }
 

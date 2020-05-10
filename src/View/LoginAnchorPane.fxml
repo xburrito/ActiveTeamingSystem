@@ -42,12 +42,12 @@
                               <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
-                        <JFXTextField focusColor="#00c5ff" labelFloat="true" layoutX="23.0" layoutY="238.0" prefHeight="25.0" prefWidth="300.0" promptText="Email" unFocusColor="#a4a4a4">
+                        <JFXTextField fx:id="fieldEmail" focusColor="#00c5ff" labelFloat="true" layoutX="23.0" layoutY="238.0" prefHeight="25.0" prefWidth="300.0" promptText="Email" unFocusColor="#a4a4a4">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </JFXTextField>
-                        <JFXPasswordField focusColor="#00c5ff" labelFloat="true" layoutX="26.0" layoutY="292.0" prefHeight="29.0" prefWidth="300.0" promptText="Password" unFocusColor="#a4a4a4">
+                        <JFXPasswordField fx:id="fieldPassword" focusColor="#00c5ff" labelFloat="true" layoutX="26.0" layoutY="292.0" prefHeight="29.0" prefWidth="300.0" promptText="Password" unFocusColor="#a4a4a4">
                            <font>
                               <Font size="15.0" />
                            </font>

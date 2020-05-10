@@ -1,6 +1,8 @@
 package Controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,6 +21,8 @@ public class LoginAnchorPaneController {
     @FXML private JFXButton buttonBrowseGuest;
 
     // Fields
+    @FXML private JFXTextField fieldEmail;
+    @FXML private JFXPasswordField fieldPassword;
 
     // gets mainController
     public void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
@@ -28,14 +32,35 @@ public class LoginAnchorPaneController {
     // handle button action of Browse View
     @FXML private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == buttonLogin) {
+            // for debugging ony: display credentials entered
+            String username = fieldEmail.getText();
+            String password = fieldPassword.getText();
+            System.out.println("username: " + username);
+            System.out.println("passwords:" + password);
+
+            // validate credentials
+            // ******
+
+            // reset login fields
+            fieldEmail.setText("");
+            fieldPassword.setText("");
+
             // display main view
             mainAnchorPaneController.displayMainView();
         }
         else if (event.getSource() == buttonRegister) {
+            // reset login fields
+            fieldEmail.setText("");
+            fieldPassword.setText("");
+
             // display browser view
             mainAnchorPaneController.displayRegisterView();
         }
         else if (event.getSource() == buttonBrowseGuest) {
+            // reset login fields
+            fieldEmail.setText("");
+            fieldPassword.setText("");
+
             // display browser view
             mainAnchorPaneController.displayBrowseView();
         }

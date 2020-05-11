@@ -15,14 +15,15 @@ public class Group {
   }
 
   // Constructor with parameters
-  public Group(int group_ID, String group_Name, String group_Leader){
+  public Group(int group_ID, String group_Name, String group_Leader, int member_count){
     this.group_ID = group_ID;
     this.group_Name = group_Name;
     this.group_Leader = group_Leader;
+    this.member_count = member_count;
   }
 
   // Getters
-  public int getGroup_ID(){
+  public int getGroupID(){
     return group_ID;
   }
 

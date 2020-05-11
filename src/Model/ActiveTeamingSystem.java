@@ -1,9 +1,7 @@
 package Model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,9 +12,10 @@ public class ActiveTeamingSystem {
     private List<Group> groupDB;
     // ArrayList, holds top profiles
     private List<TopProfile> topProfilesList;
-    // Logged in Use
+    // Logged in User
     private User loggedUser;
-
+    // group of Logged in user
+    private Group loggedUserGroup;
 
     // default constructor
     public ActiveTeamingSystem(){
@@ -26,8 +25,6 @@ public class ActiveTeamingSystem {
         groupDB = new ArrayList<Group>();
         // initialize topProfilesList
         topProfilesList = new ArrayList<TopProfile>();
-
-
     }
 
     // add user into userDB, (it adds users sorted from lowest to highest reputations score)
@@ -56,6 +53,38 @@ public class ActiveTeamingSystem {
         userDB.add(new User(dayOfBirth, dateJoined, userID, password, email, username, lastName, firstName, repScore, status));
     }
 
+    // add Group into groupDB, (it adds groups sorted from lowest to highest reputations score)
+    //Group_ID,Group_Name,Group_Leader,Member_Count
+    public void addGroup(int groupID, String groupName, String groupLeader, int memberCount) {
+        // simply add the new record
+        groupDB.add(new Group(groupID, groupName, groupLeader, memberCount));
+    }
+
+    // remove a user from the userDB
+    public User removeUser(int userID) {
+        User removed = null;
+
+        for (int i=0; i<userDB.size();i++) {
+            if (userDB.get(i).getUserID() == userID) {
+                removed = userDB.remove(i);
+            }
+        }
+        return removed;
+    }
+
+    // remove a group from the groupDB
+    public Group removeGroup(int groupID) {
+        Group removed = null;
+
+        for (int i=0; i<groupDB.size();i++) {
+            if (groupDB.get(i).getGroupID() == groupID) {
+                removed = groupDB.remove(i);
+            }
+        }
+        return removed;
+    }
+
+
     // Reads file and loads the data into userDB
     // database columns: D.O.B.,Date Joined,User_ID,Password (Not Hashed Yet),Email,Username,Last_Name,First_Name,Rep_Score,Status
     public void readFileToUser(String filePath) throws Exception {
@@ -77,7 +106,7 @@ public class ActiveTeamingSystem {
                     //System.out.println(userRecords.length); // for debugging
 
                     // get all values
-                    String dayOfBirth = userRecords[0];
+                    String dateOfBirth = userRecords[0];
                     String dateJoined = userRecords[1];
                     int userID = Integer.parseInt(userRecords[2]);
                     String password = userRecords[3];
@@ -89,7 +118,7 @@ public class ActiveTeamingSystem {
                     String status = userRecords[9];
 
                     // add into userDB
-                    addUser(dayOfBirth, dateJoined, userID, password, email, username, lastName, firstName, repScore, status);
+                    addUser(dateOfBirth, dateJoined, userID, password, email, username, lastName, firstName, repScore, status);
                 }
             }
             // close scanner
@@ -99,6 +128,144 @@ public class ActiveTeamingSystem {
             System.out.println("Specified File could not be found!");
         }
     }
+
+    // Reads file and loads the data into groupDB
+    public void readFileToGroup(String filePath) throws Exception {
+        try {
+            // file to read
+            Scanner inputFile = new Scanner(new File(filePath));
+
+            // skip first line (column names)
+            inputFile.nextLine();
+
+            // while there is another line in the file
+            while (inputFile.hasNextLine()) {
+                // get line
+                String currentLine = inputFile.nextLine();
+                //System.out.println(currentLine + "CurrentLine: " + currentLine); // for debugging
+                if (!currentLine.equals("")) {
+                    // split line
+                    String[] userRecords = currentLine.split(",");
+                    //System.out.println(userRecords.length); // for debugging
+
+                    // get all values
+                    String groupName = userRecords[0];
+                    int groupID = Integer.parseInt(userRecords[1]);
+                    String groupLeader = userRecords[2];
+                    int memberCount = Integer.parseInt(userRecords[3]);
+
+                    // add into groupDB
+                    addGroup(groupID, groupName, groupLeader, memberCount);
+                }
+            }
+            // close scanner
+            inputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+    // saves new user into external file
+    public void saveUserToFile(String dateOfBirth, String dateJoined, int userID, String password, String email, String username, String lastName, String firstName, int repScore, String status) throws IOException {
+
+        try {
+            String filePath = "GROUP PATH";
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath, true));
+
+            // double to string
+            //String quantityStr = String.valueOf(quantity);
+            //String tradeId = String.valueOf(id);
+
+            // LATER CHECK IF WE CAN PASS INTS DIRECTLY INTO STRING WITHOUT CONVERTING IT TO STRING FIRST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // format word string
+            String newUser = dateOfBirth + "," + dateJoined + "," +  userID + "," + password + "," + email + "," + username + "," + lastName + "," + firstName + "," + repScore + "," + status;
+            // write word to file
+            outputFile.newLine(); // select next line
+            outputFile.write(newUser); // write word
+
+            // close file
+            outputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+    // writes the complete userDB to the user database external file
+    public void overwriteUserFile(String filePath) throws IOException {
+        // ok when we remove a user from our userDB the user is also removed from the external user database
+        // so I just have to make a copy of the database and overwrite the external file.
+        try {
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath));
+
+            for (int i =0; i< userDB.size(); i++) {
+                // current user
+                User currentUser = userDB.get(i);
+
+                // get fields
+                String dateOfBirth = currentUser.getDOB();
+                String dateJoined = currentUser.getDateJoined();
+                String userID = String.valueOf(currentUser.getUserID());
+                String password = currentUser.getPassword();
+                String email = currentUser.getEmail();
+                String username = currentUser.getUserName();
+                String lastName = currentUser.getLastName();
+                String firstName = currentUser.getFirstName();
+                String repScore = String.valueOf(currentUser.getRepScore());
+                String status = currentUser.getStatus();
+
+                // format transaction properties to string
+                String userStr = dateOfBirth + "," + dateJoined + "," + userID + "," + password + "," + email + "," + username + "," + lastName + "," + firstName + "," + repScore + "," + status;
+
+                // write the  string
+                outputFile.newLine(); // select next line
+                outputFile.write(userStr); // write word
+            }
+
+            // close file
+            outputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+    // writes the complete groupDB to the groups database external file
+    public void overwriteGroupFile(String filePath) throws IOException {
+        // ok when we remove a group from our groupDB the user is also removed from the external group database
+        // so I just have to make a copy of the database and overwrite the external file.
+        try {
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath));
+
+            for (int i =0; i< groupDB.size(); i++) {
+                // current group
+                Group currentGroup = groupDB.get(i);
+
+                // get fields
+                String groupID = String.valueOf(currentGroup.getGroupID());
+                String groupName = currentGroup.getGroupName();
+                String groupLeader = currentGroup.getGroupLeader();
+                String memberCount = String.valueOf(currentGroup.getMemberCount());
+
+
+                // format transaction properties to string
+                String groupStr = groupID + "," + groupName + "," + groupLeader + "," + memberCount;
+
+                // write the  string
+                outputFile.newLine(); // select next line
+                outputFile.write(groupStr); // write word
+            }
+
+            // close file
+            outputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+
 
     // prints user DB
     public void printUserDB(){
@@ -121,12 +288,21 @@ public class ActiveTeamingSystem {
         this.loggedUser = loggedUser;
     }
 
+    // sets the loggedUserGroup
+    public void setLoggedUserGroup(Group loggedUserGroup) {
+        this.loggedUserGroup = loggedUserGroup;
+    }
 
     // GETTERS
 
     // gets the user who currently logged in the system
     public User getLoggedUser() {
         return loggedUser;
+    }
+
+    // gets the group of the user who currently logged in the system
+    public Group getLoggedUserGroup() {
+        return loggedUserGroup;
     }
 
     // gets User Database
@@ -191,5 +367,4 @@ public class ActiveTeamingSystem {
         return false;
     }
 
-    
-} // ActiveTeamingSystem
+} // end ActiveTeamingSystem

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.ActiveTeamingSystem;
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,7 +8,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TextField;
 
 public class RegisterAnchorPaneController {
+    // main Controller
     private MainAnchorPaneController mainAnchorPaneController;
+    // ActiveTeamingSystem Model
+    private ActiveTeamingSystem systemModel;
 
     // buttons
     @FXML private JFXButton buttonGoBack;
@@ -33,6 +37,10 @@ public class RegisterAnchorPaneController {
     // gets mainController
     public void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
         this.mainAnchorPaneController = mainAnchorPaneController;
+    }
+    // gets mainModel
+    void injectMainModel(ActiveTeamingSystem systemModel) {
+        this.systemModel = systemModel;
     }
 
     @FXML private void initialize(){

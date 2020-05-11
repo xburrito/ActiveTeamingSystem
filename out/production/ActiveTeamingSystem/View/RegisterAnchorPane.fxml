@@ -37,7 +37,7 @@
             <Font name="Arial Black" size="14.0" />
          </font>
       </JFXButton>
-      <VBox fx:id="content_area" alignment="CENTER" prefHeight="69.0" prefWidth="1038.0" style="-fx-background-color: #00C5FF#00C5FF;">
+      <VBox fx:id="content_area" alignment="CENTER" prefHeight="69.0" prefWidth="926.0" style="-fx-background-color: #00C5FF#00C5FF;">
          <children>
             <Label text="Registration Form">
                <font>

@@ -14,6 +14,8 @@ public class ActiveTeamingSystem {
     private List<Group> groupDB;
     // ArrayList, holds top profiles
     private List<TopProfile> topProfilesList;
+    // Logged in Use
+    private User loggedUser;
 
 
     // default constructor
@@ -24,6 +26,8 @@ public class ActiveTeamingSystem {
         groupDB = new ArrayList<Group>();
         // initialize topProfilesList
         topProfilesList = new ArrayList<TopProfile>();
+
+
     }
 
     // add user into userDB, (it adds users sorted from lowest to highest reputations score)
@@ -36,7 +40,6 @@ public class ActiveTeamingSystem {
 
             // loop through all elements
             for (int i = 0; i < userDB.size(); i++) {
-                System.out.println(i);
                 // if the element you are looking at is bigger than x, go to the next element
                 if (userDB.get(i).getRepScore() > newRepScore)
                     continue;
@@ -111,7 +114,20 @@ public class ActiveTeamingSystem {
         }
     }
 
-    // getters
+    // SETTERS
+
+    // sets loggedUser
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
+    }
+
+
+    // GETTERS
+
+    // gets the user who currently logged in the system
+    public User getLoggedUser() {
+        return loggedUser;
+    }
 
     // gets User Database
     public List<User> getUserBD() {
@@ -160,5 +176,20 @@ public class ActiveTeamingSystem {
         }
         //Collections.reverse(topProfilesList);
     }
+
+    // Credential Authentication
+    public boolean authenticateCredentials(String email, String password){
+        // search userDB for user
+        for (User user : userDB) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+                // found user is now loggedUser
+                loggedUser = user;
+                return true;
+                //System.out.println(loggedUser.toString());
+            }
+        }// user not found
+        return false;
+    }
+
     
 } // ActiveTeamingSystem

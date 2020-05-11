@@ -18,7 +18,7 @@
                   <Image url="@../Assets/Menu/User.png" />
                </image>
             </ImageView>
-            <Label layoutX="66.0" layoutY="177.0" text="[Insert Username Here]">
+            <Label fx:id="labelUsername" layoutX="66.0" layoutY="177.0" text="[Insert Username Here]">
                <padding>
                   <Insets bottom="15.0" />
                </padding>
@@ -79,12 +79,12 @@
          <children>
             <StackPane prefHeight="700.0" prefWidth="669.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-19.0" AnchorPane.topAnchor="0.0">
                <children>
+                  <!--Note: name of fx:id should be "fx:id"Controller.java, in order for injection to work. -->
                   <fx:include fx:id="settingsAnchorPane" source="SettingsAnchorPane.fxml" />
                   <fx:include fx:id="votingReputationAnchorPane" source="VotingReputationAnchorPane.fxml" />
                   <fx:include fx:id="projectsAnchorPane" source="ProjectsAnchorPane.fxml" />
                   <fx:include fx:id="groupsAnchorPane" source="GroupsAnchorPane.fxml" />
                   <fx:include fx:id="messagesAnchorPane" source="MessagesAnchorPane.fxml" />
-                  <!--Note: name of fx:id should be "fx:id"Controller.java, in order for injection to work. -->
                   <fx:include fx:id="homeAnchorPane" source="HomeAnchorPane.fxml" />
                </children>
             </StackPane>

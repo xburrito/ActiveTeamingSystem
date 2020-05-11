@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="homeAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onContextMenuRequested="#getHomeContent" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #BFF0FF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeAnchorPaneController">
+<AnchorPane fx:id="homeAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onContextMenuRequested="#getHomeContent" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #BFF0FF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeAnchorPaneController">
    <children>
-      <VBox fx:id="content_area" prefHeight="67.0" prefWidth="1605.0" style="-fx-background-color: #00C5FF#00C5FF;">
+      <VBox fx:id="content_area" prefHeight="67.0" prefWidth="1000.0" style="-fx-background-color: #00C5FF#00C5FF;">
          <children>
             <Label alignment="TOP_LEFT" prefHeight="65.0" prefWidth="144.0" text="Home">
                <font>

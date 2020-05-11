@@ -1,15 +1,22 @@
 package Controller;
 
+import Model.ActiveTeamingSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+
+import java.util.Optional;
 
 
 // This is the main controller for the GUI, its connected to all other controllers
 public class MainAnchorPaneController {
-    //private ModelClass theModel;
+    // main Controller
+    private MainAnchorPaneController mainAnchorPaneController;
 
     //@FXML private AnchorPane browserAnchorPane;
     //@FXML private AnchorPane loginAnchorPane;
@@ -23,6 +30,7 @@ public class MainAnchorPaneController {
 
     // sidebar
     @FXML private AnchorPane sidebarAnchorPane;
+    @FXML private Label labelUsername;
     @FXML private Button buttonHomePage, buttonMessages, buttonGroups, buttonProjects,
             buttonVotingReputation, buttonSettings, buttonLogOut;
 
@@ -35,25 +43,68 @@ public class MainAnchorPaneController {
     @FXML private AnchorPane projectsAnchorPane;
     @FXML private AnchorPane votingReputationAnchorPane;
     @FXML private AnchorPane settingsAnchorPane;
-    //@FXML private AnchorPane logOutAnchorPane;  // create later
+
+    Alert alertDialog = new Alert(Alert.AlertType.CONFIRMATION);
 
     @FXML private HomeAnchorPaneController homeAnchorPaneController;
     @FXML private BrowseAnchorPaneController browseAnchorPaneController;
+    @FXML private GroupsAnchorPaneController groupsAnchorPaneController;
     @FXML private LoginAnchorPaneController loginAnchorPaneController;
+    @FXML private MessagesAnchorPaneController messagesAnchorPaneController;
+    @FXML private ProjectsAnchorPaneController projectsAnchorPaneController;
     @FXML private RegisterAnchorPaneController registerAnchorPaneController;
+    @FXML private SettingsAnchorPaneController settingsAnchorPaneController;
+    @FXML private VotingReputationAnchorPaneController votingReputationAnchorPaneController;
+
+    // ActiveTeamingSystem Model
+    private ActiveTeamingSystem systemModel;
 
 
-    @FXML private void initialize() {
-        // CONNECT all other controller to MainController
-        System.out.println("sdfa");
+    public MainAnchorPaneController() {
+        // create and initialize the System Model
+        systemModel = new ActiveTeamingSystem();
+
+    }
+
+
+    @FXML private void initialize() throws Exception {
+        // create and initialize the System Model
+       //systemModel = new ActiveTeamingSystem();
+
+        // CONNECT this MainController to all other controllers
         // send mainController to homeController
-        //homeController.injectMainController(this);
-        // send mainController to browseController
+        homeAnchorPaneController.injectMainController(this);
         browseAnchorPaneController.injectMainController(this);
-        // send mainController to loginController
         loginAnchorPaneController.injectMainController(this);
-        // send mainController to registerController
+        groupsAnchorPaneController.injectMainController(this);
+        messagesAnchorPaneController.injectMainController(this);
+        projectsAnchorPaneController.injectMainController(this);
         registerAnchorPaneController.injectMainController(this);
+        settingsAnchorPaneController.injectMainController(this);
+        votingReputationAnchorPaneController.injectMainController(this);
+
+        // CONNECT this systemModel to all other controllers
+        homeAnchorPaneController.injectMainModel(systemModel);
+        browseAnchorPaneController.injectMainModel(systemModel);
+        groupsAnchorPaneController.injectMainModel(systemModel);
+        loginAnchorPaneController.injectMainModel(systemModel);
+        messagesAnchorPaneController.injectMainModel(systemModel);
+        projectsAnchorPaneController.injectMainModel(systemModel);
+        registerAnchorPaneController.injectMainModel(systemModel);
+        settingsAnchorPaneController.injectMainModel(systemModel);
+        votingReputationAnchorPaneController.injectMainModel(systemModel);
+
+
+        // get user records from external file
+        systemModel.readFileToUser("src/Database/User_database.csv");
+
+        systemModel.addTopProfilesToList();
+        //listViewTopProfiles.getItems().addAll(systemModel.getTopProfilesList());
+
+        // get group records from external file
+        //systemModel.readFileToGroup("PATH");
+
+
     }
 
     String buttonDefaultColor = "-fx-background-color:#00C5FF;";
@@ -145,7 +196,20 @@ public class MainAnchorPaneController {
             buttonSettings.setStyle(buttonDefaultColor);
             buttonLogOut.setStyle("-fx-background-color:#00909e;");
 
-            displayBrowseView();
+            alertDialog.setTitle("System Alert");
+            alertDialog.setHeaderText("Logout");
+            alertDialog.setContentText("Are you sure you want to logout? you will be redirected to the browse page.");
+
+            Optional<ButtonType> result = alertDialog.showAndWait();
+            if (result.get() == ButtonType.OK){
+                // sign out user from the system
+                systemModel.setLoggedUser(null);
+
+                // Redirect to Browse View
+                displayBrowseView();
+            } else {
+                // ... user chose CANCEL or closed the dialog
+            }
 
         }
 //        else if (event.getSource() == browseController.getButton()) {
@@ -196,6 +260,14 @@ public class MainAnchorPaneController {
     // brings registerAnchorPane to the front.
     public void displayRegisterView(){
         registerAnchorPane.toFront();
+    }
+
+    public Label getLabeUsername(){
+        return labelUsername;
+    }
+
+    public void setLabeUsername(String username){
+        labelUsername.setText(username);
     }
 
 }

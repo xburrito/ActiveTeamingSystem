@@ -26,9 +26,12 @@ public class BrowseAnchorPaneController {
     String buttonDefaultColor = "-fx-background-color:#00C5FF;";
 
 
-    @FXML private void initialize() throws Exception {
+    public BrowseAnchorPaneController() {
 
-        // create the System Model
+    }
+
+    @FXML private void initialize() throws Exception {
+        // create and initialize the System Model
         systemModel = new ActiveTeamingSystem();
 
         // get user records from external file
@@ -36,7 +39,6 @@ public class BrowseAnchorPaneController {
 
         systemModel.addTopProfilesToList();
         listViewTopProfiles.getItems().addAll(systemModel.getTopProfilesList());
-               // getItems().addAll(fruitList);   //listViewTopProfiles.add
 
 
         // get group records from external file
@@ -50,6 +52,11 @@ public class BrowseAnchorPaneController {
     // gets mainController
     void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
         this.mainAnchorPaneController = mainAnchorPaneController;
+    }
+
+    // gets mainModel
+    void injectMainModel(ActiveTeamingSystem systemModel) {
+        this.systemModel = systemModel;
     }
 
     // handle button action of Browse View

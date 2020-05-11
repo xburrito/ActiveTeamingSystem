@@ -170,7 +170,7 @@ public class ActiveTeamingSystem {
     public void saveUserToFile(String dateOfBirth, String dateJoined, int userID, String password, String email, String username, String lastName, String firstName, int repScore, String status) throws IOException {
 
         try {
-            String filePath = "GROUP PATH";
+            String filePath = "src/Database/Groups.csv";
             BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath, true));
 
             // double to string
@@ -218,7 +218,7 @@ public class ActiveTeamingSystem {
                 // format transaction properties to string
                 String userStr = dateOfBirth + "," + dateJoined + "," + userID + "," + password + "," + email + "," + username + "," + lastName + "," + firstName + "," + repScore + "," + status;
 
-                // write the  string
+                // write the string
                 outputFile.newLine(); // select next line
                 outputFile.write(userStr); // write word
             }
@@ -252,7 +252,7 @@ public class ActiveTeamingSystem {
                 // format transaction properties to string
                 String groupStr = groupID + "," + groupName + "," + groupLeader + "," + memberCount;
 
-                // write the  string
+                // write the string
                 outputFile.newLine(); // select next line
                 outputFile.write(groupStr); // write word
             }

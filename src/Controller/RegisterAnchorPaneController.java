@@ -4,6 +4,7 @@ import Model.ActiveTeamingSystem;
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.TextField;
 
@@ -30,6 +31,8 @@ public class RegisterAnchorPaneController {
     @FXML private JFXPasswordField fieldPassConfirm;
     @FXML private JFXTextArea fieldReference;
 
+    Alert alertDialog = new Alert(Alert.AlertType.INFORMATION);
+
 
 //.setSelected(true);
 
@@ -44,6 +47,8 @@ public class RegisterAnchorPaneController {
     }
 
     @FXML private void initialize(){
+        alertDialog.setTitle("System Alert");
+
         // add all radioButtons to a group
         radioButtonOU.setToggleGroup(radioGroup);
         radioButtonVIP.setToggleGroup(radioGroup);
@@ -57,34 +62,67 @@ public class RegisterAnchorPaneController {
     private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == buttonSubmitForm) {
 
-            // first check that none of the fields are empty.
-            if (fieldUsername.getText() != null && fieldEmail.getText() != null && fieldPassword != null && datePickerDOB.getValue() != null &&
-                    fieldPassConfirm != null && fieldReference != null && radioGroup.getSelectedToggle() != null) {
+            if (radioGroup.getSelectedToggle() != null && radioButtonNO == radioGroup.getSelectedToggle()) {
+                // ALERT
+                alertDialog.setHeaderText("No Reference!");
+                alertDialog.setContentText("You cannot register into the system if you dont have a reference.");
+                alertDialog.showAndWait();
+            } // then check that none of the fields are empty.
+            else if (!fieldUsername.getText().equals("") && !fieldEmail.getText().equals("") && !fieldPassword.getText().equals("") && datePickerDOB.getValue() != null &&
+                    !fieldPassConfirm.getText().equals("") && !fieldReference.getText().equals("")) {
 
-                // get all fields
-                String username = fieldUsername.getText();
-                String email = fieldEmail.getText();
-                String dateOfBirth = datePickerDOB.getValue().toString();
+                // get password
                 String password = fieldPassword.getText();
                 String passConfirm = fieldPassConfirm.getText();
-                String referrer = fieldReference.getText();
-                String radio = radioGroup.getSelectedToggle().toString();
+                // check that passwords match
+                if (verifyPassword(password, passConfirm)) {
+                    // get other fields
+                    String username = fieldUsername.getText();
+                    String email = fieldEmail.getText();
+                    String dateOfBirth = datePickerDOB.getValue().toString();
 
-                // for debuggin only: print all entered fields
-                System.out.println(username);
-                System.out.println(email);
-                System.out.println(dateOfBirth);
-                System.out.println(password);
-                System.out.println(passConfirm);
-                System.out.println(referrer);
-                System.out.println(radio);
+                    String referrer = fieldReference.getText();
+                    String radio = radioGroup.getSelectedToggle().toString();
+
+                    // for debuggin only: print all entered fields
+                    System.out.println(username);
+                    System.out.println(email);
+                    System.out.println(dateOfBirth);
+                    System.out.println(password);
+                    System.out.println(passConfirm);
+                    System.out.println(referrer);
+                    System.out.println(radio);
+
+                    // Send application to SU
+                   // systemModel.addUser();
+
+                } else {
+                    // ALERT
+                    alertDialog.setHeaderText("Entered Passwords do not Match!");
+                    alertDialog.setContentText("Your password should match!");
+                    alertDialog.showAndWait();
+                }
+
+                // SEND FORM "NOTIFICATION" TO SU
+            } else {
+                // ALERT
+                alertDialog.setHeaderText("Empty Fields!");
+                alertDialog.setContentText("Please make sure that you fill out every field.");
+                alertDialog.showAndWait();
             }
-            // SEND FORM "NOTIFICATION" TO SU
         }
         else if (event.getSource() == buttonGoBack) {
             // display browser view
             mainAnchorPaneController.displayLoginView();
         }
+    }
+
+    // checks that given passwords match
+    private boolean verifyPassword(String pass1, String pass2){
+        if (pass1.equals(pass2)) {
+            return true;
+        }
+        return false;
     }
 
 }

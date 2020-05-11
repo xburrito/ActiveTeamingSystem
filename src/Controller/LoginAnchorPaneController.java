@@ -63,7 +63,8 @@ public class LoginAnchorPaneController {
                 User loggedUser = systemModel.getLoggedUser();
                 // set username on profile
                 mainAnchorPaneController.setLabeUsername(loggedUser.getUserName());
-
+                mainAnchorPaneController.setLabelReputationScore(String.valueOf(loggedUser.getRepScore()));
+                mainAnchorPaneController.setLabelStatus(loggedUser.getStatus());
                 // display main view
                 mainAnchorPaneController.displayMainView();
             } else {

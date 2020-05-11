@@ -31,6 +31,9 @@ public class MainAnchorPaneController {
     // sidebar
     @FXML private AnchorPane sidebarAnchorPane;
     @FXML private Label labelUsername;
+    @FXML private Label labelReputationScore;
+    @FXML private Label labelStatus;
+
     @FXML private Button buttonHomePage, buttonMessages, buttonGroups, buttonProjects,
             buttonVotingReputation, buttonSettings, buttonLogOut;
 
@@ -268,6 +271,14 @@ public class MainAnchorPaneController {
 
     public void setLabeUsername(String username){
         labelUsername.setText(username);
+    }
+
+    public void setLabelReputationScore(String score){
+        labelReputationScore.setText(score);
+    }
+
+    public void setLabelStatus(String status){
+        labelStatus.setText(status);
     }
 
 }

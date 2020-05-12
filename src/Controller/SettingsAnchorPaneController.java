@@ -54,7 +54,7 @@ public class SettingsAnchorPaneController {
             String confirmPassword = fieldPasswordConfirm.getText();
 
 
-            // change user values
+            // update Profile
             systemModel.getLoggedUser().setUserName(username);
             systemModel.getLoggedUser().setEmail(email);
 
@@ -80,43 +80,6 @@ public class SettingsAnchorPaneController {
         // save changes to external database
         systemModel.overwriteUserFile("src/Database/User_database.csv");
     }
-
-    /**
-     * Saves New Account Changes
-     */
-//		this.theView.saveSettingsButton(new ActionListener() {
-//        public void actionPerformed(ActionEvent e) {
-//
-//            // if Name & Picture Fields are not empty
-//            if (!theView.getProfileName().equals("") && !theView.getProfilePicturePath().equals("")) {
-//
-//                String name = theView.getNewName();
-//                String picturePath = theView.getProfilePicturePath();
-//                String country = theView.getNewCountry();
-//                boolean status = theModel.getCurrentUser().getStatus();
-//
-//                // update Profile
-//                theModel.updateUserProfile(picturePath, name, country, status);
-//
-//                // populate current user profile
-//                theView.setprofilePicture(theModel.getCurrentUser().getPicture());
-//                theView.setProfileName(theModel.getCurrentUser().getName());
-//                theView.setProfileCountry(theModel.getCurrentUser().getCountry());
-//
-//                if (theModel.getCurrentUser().getStatus() == true) {
-//                    theView.setProfileStatus("Online");
-//                } else {
-//                    theView.setProfileStatus("Offline");
-//                }
-//
-//                // update network List
-//                repopulateNetworkList();
-//
-//                //resetKeyFields after settings are saved
-//                //theView.resetKeyFields();
-//            }
-//        }
-//    });
 
     // this methods populates settings fields. it gets triggered when the user clicks the setting tab
     public void triggerInitializationOfSettingsView(){

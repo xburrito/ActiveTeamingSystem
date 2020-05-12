@@ -22,13 +22,8 @@
             </Label>
          </children>
       </VBox>
-      <JFXListView fx:id="listViewProfiles" layoutX="140.0" layoutY="95.0" prefHeight="182.0" prefWidth="642.0" />
-      <JFXButton layoutX="795.0" layoutY="358.0" text="Delete" />
-      <JFXButton layoutX="790.0" layoutY="173.0" text="Blacklist" />
-      <Label layoutX="140.0" layoutY="78.0" text="Profiles" />
-      <JFXListView fx:id="listViewGroups" layoutX="140.0" layoutY="303.0" prefHeight="182.0" prefWidth="642.0" />
-      <JFXListView fx:id="listViewProjects" layoutX="140.0" layoutY="511.0" prefHeight="182.0" prefWidth="642.0" />
-      <Label layoutX="140.0" layoutY="286.0" text="Groups" />
-      <Label layoutX="140.0" layoutY="494.0" text="Projects" />
+      <JFXButton layoutX="796.0" layoutY="325.0" text="Blacklist" />
+      <Label layoutX="145.0" layoutY="148.0" text="Profiles" />
+      <JFXListView fx:id="listViewProfiles" layoutX="145.0" layoutY="166.0" prefHeight="368.0" prefWidth="643.0" />
    </children>
 </AnchorPane>

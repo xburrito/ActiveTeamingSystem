@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,5 +22,7 @@
             </Label>
          </children>
       </VBox>
+      <JFXListView fx:id="listViewGroups" layoutX="144.0" layoutY="188.0" prefHeight="368.0" prefWidth="643.0" />
+      <JFXButton layoutX="796.0" layoutY="360.0" text="Delete" />
    </children>
 </AnchorPane>

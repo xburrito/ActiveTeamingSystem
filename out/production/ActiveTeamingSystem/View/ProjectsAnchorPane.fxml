@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,5 +21,6 @@
             </Label>
          </children>
       </VBox>
+      <JFXListView fx:id="listViewProjects" layoutX="154.0" layoutY="198.0" prefHeight="368.0" prefWidth="643.0" />
    </children>
 </AnchorPane>

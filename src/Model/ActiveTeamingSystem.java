@@ -18,6 +18,11 @@ public class ActiveTeamingSystem {
     private User loggedUser;
     // group of Logged in user
     private Group loggedUserGroup;
+    // BlackList List
+    //private List<User> blackList;
+    // Rejected Applications List
+    //private List<User> rejectedList;
+
 
     // default constructor
     public ActiveTeamingSystem(){

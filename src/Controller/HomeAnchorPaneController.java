@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.ActiveTeamingSystem;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -19,8 +18,6 @@ public class HomeAnchorPaneController {
 
     // list views
     @FXML private JFXListView listViewProfiles;
-    @FXML private JFXListView listViewGroups;
-    @FXML private JFXListView listViewProjects;
 
     @FXML private AnchorPane homeAnchorPane;
 
@@ -30,7 +27,7 @@ public class HomeAnchorPaneController {
         this.systemModel = mainModel;
 
         // also, initialize required fields
-        populateAllViewLists();
+        populateProfileListsView();
     }
 
 
@@ -39,11 +36,9 @@ public class HomeAnchorPaneController {
         //homeAnchorPane.toFront();
     }
 
-    public void populateAllViewLists(){
+    public void populateProfileListsView(){
         systemModel.addProfilesToList();
         listViewProfiles.getItems().addAll(systemModel.getProfiles());
-        listViewGroups.getItems().addAll(systemModel.getGroupBD());
-        //listViewProjects.getItems().addAll(systemModel.getTopProfilesList());
     }
 
 }

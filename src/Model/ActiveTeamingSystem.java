@@ -12,6 +12,8 @@ public class ActiveTeamingSystem {
     private List<Group> groupDB;
     // ArrayList, holds top profiles
     private List<TopProfile> topProfilesList;
+    // ArrayList, holds profiles for displayal
+    private List<TopProfile> profileList;
     // Logged in User
     private User loggedUser;
     // group of Logged in user
@@ -25,6 +27,8 @@ public class ActiveTeamingSystem {
         groupDB = new ArrayList<Group>();
         // initialize topProfilesList
         topProfilesList = new ArrayList<TopProfile>();
+        // initialize profileList
+        profileList = new ArrayList<TopProfile>();
     }
 
     // add user into userDB, (it adds users sorted from lowest to highest reputations score)
@@ -145,14 +149,14 @@ public class ActiveTeamingSystem {
                 //System.out.println(currentLine + "CurrentLine: " + currentLine); // for debugging
                 if (!currentLine.equals("")) {
                     // split line
-                    String[] userRecords = currentLine.split(",");
+                    String[] groupRecords = currentLine.split(",");
                     //System.out.println(userRecords.length); // for debugging
 
                     // get all values
-                    String groupName = userRecords[0];
-                    int groupID = Integer.parseInt(userRecords[1]);
-                    String groupLeader = userRecords[2];
-                    int memberCount = Integer.parseInt(userRecords[3]);
+                    int groupID = Integer.parseInt(groupRecords[0]);
+                    String groupName = groupRecords[1];
+                    String groupLeader = groupRecords[2];
+                    int memberCount = Integer.parseInt(groupRecords[3]);
 
                     // add into groupDB
                     addGroup(groupID, groupName, groupLeader, memberCount);
@@ -263,6 +267,22 @@ public class ActiveTeamingSystem {
         } catch (FileNotFoundException e) {
             System.out.println("Specified File could not be found!");
         }
+    }
+
+    // adds all profiles to profile list, for home displayal
+    public void addProfilesToList (){
+        for (User user : userDB) {
+            TopProfile profile = new TopProfile(user.getUserName(), user.getRepScore(), user.getStatus());
+            System.out.println(user.getUserName());
+            System.out.println(user.getRepScore());
+            System.out.println(user.getStatus());
+            profileList.add(profile);
+        }
+    }
+
+    // get profiles
+    public List<TopProfile> getProfiles() {
+        return profileList;
     }
 
 

@@ -73,6 +73,13 @@ public class MainAnchorPaneController {
         // create and initialize the System Model      // since they all execute at the "same" time they cannot receive the model first,
        systemModel = new ActiveTeamingSystem();        // as when they try to get the model, the model doesn't exist YET.
 
+        // get user records from external file
+        systemModel.readFileToUser("src/Database/User_database.csv");
+
+        // get group records from external file
+        systemModel.readFileToGroup("src/Database/Groups.csv");
+
+
         // CONNECT this MainController and the Main model to all other controllers
         homeAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
         browseAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
@@ -83,17 +90,6 @@ public class MainAnchorPaneController {
         registerAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
         settingsAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
         votingReputationAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
-
-
-
-        // get user records from external file
-        systemModel.readFileToUser("src/Database/User_database.csv");
-
-        systemModel.addTopProfilesToList();
-        //listViewTopProfiles.getItems().addAll(systemModel.getTopProfilesList());
-
-        // get group records from external file
-        //systemModel.readFileToGroup("PATH");
     }
 
     String buttonDefaultColor = "-fx-background-color:#00C5FF;";
@@ -110,6 +106,7 @@ public class MainAnchorPaneController {
             buttonSettings.setStyle(buttonDefaultColor);
             buttonLogOut.setStyle(buttonDefaultColor);
 
+            // show home view
             homeAnchorPane.toFront();
             //mainContentStackPanePane.requestLayout();
             //homeAnchorPane.setVisible(true);

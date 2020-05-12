@@ -56,4 +56,10 @@ public class Group {
     this.member_count = member_count;
   }
 
+  // utility methods, Note: they are automatically used for GUI Lists Views
+  public String toString() {
+    String str = "\n" + "[" + group_Name + group_Leader + ", " + member_count + "]";
+    return str;
+  }
+
 }

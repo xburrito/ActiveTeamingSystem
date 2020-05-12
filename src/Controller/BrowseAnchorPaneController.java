@@ -31,6 +31,8 @@ public class BrowseAnchorPaneController {
         this.systemModel = mainModel;
 
         // also, initialize required fields
+        systemModel.addTopProfilesToList();
+        listViewTopProfiles.getItems().addAll(systemModel.getTopProfilesList());
 
     }
 

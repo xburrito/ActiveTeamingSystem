@@ -12,14 +12,9 @@ public class HomeAnchorPaneController {
 
     @FXML private AnchorPane homeAnchorPane;
 
-    // gets mainController
-    public void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
+    // gets mainController and mainModel
+    public void injectMainControllerAndMainModel(MainAnchorPaneController mainAnchorPaneController, ActiveTeamingSystem mainModel) {
         this.mainAnchorPaneController = mainAnchorPaneController;
-    }
-
-    // gets mainModel
-    void injectMainModel(ActiveTeamingSystem systemModel) {
-        this.systemModel = systemModel;
     }
 
 

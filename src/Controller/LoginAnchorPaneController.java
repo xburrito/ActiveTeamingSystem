@@ -33,17 +33,12 @@ public class LoginAnchorPaneController {
     Alert alertDialog = new Alert(Alert.AlertType.INFORMATION);
 
 
-    // gets mainController
-    public void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
+    // gets mainController and mainModel
+    public void injectMainControllerAndMainModel(MainAnchorPaneController mainAnchorPaneController, ActiveTeamingSystem mainModel) {
         this.mainAnchorPaneController = mainAnchorPaneController;
-    }
-    // gets mainModel
-    void injectMainModel(ActiveTeamingSystem systemModel) {
-        this.systemModel = systemModel;
-    }
+        this.systemModel = mainModel;
 
-   @FXML private void initialize(){
-       alertDialog.setTitle("System Alert");
+        // also, initialize required fields
     }
 
     // handle button action of Browse View
@@ -68,6 +63,7 @@ public class LoginAnchorPaneController {
                 // display main view
                 mainAnchorPaneController.displayMainView();
             } else {
+                alertDialog.setTitle("System Alert");
                 alertDialog.setHeaderText("Authentication Failed");
                 alertDialog.setContentText("User account not found in database, please try again.");
                 alertDialog.showAndWait();

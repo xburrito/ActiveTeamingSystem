@@ -37,14 +37,14 @@ public class RegisterAnchorPaneController {
 //.setSelected(true);
 
 
-    // gets mainController
-    public void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
+    // gets mainController and mainModel
+    public void injectMainControllerAndMainModel(MainAnchorPaneController mainAnchorPaneController, ActiveTeamingSystem mainModel) {
         this.mainAnchorPaneController = mainAnchorPaneController;
+        this.systemModel = mainModel;
+
+        // also, initialize required fields
     }
-    // gets mainModel
-    void injectMainModel(ActiveTeamingSystem systemModel) {
-        this.systemModel = systemModel;
-    }
+
 
     @FXML private void initialize(){
         alertDialog.setTitle("System Alert");
@@ -112,13 +112,24 @@ public class RegisterAnchorPaneController {
             }
         }
         else if (event.getSource() == buttonGoBack) {
+            // reset all register fields
+            fieldUsername.setText("");
+            fieldEmail.setText("");
+            datePickerDOB.getEditor().clear();
+            datePickerDOB.setValue(null);
+            fieldPassword.setText("");
+            fieldPassConfirm.setText("");
+            fieldReference.setText("");
+            radioGroup.selectToggle(null);
+
+
             // display browser view
             mainAnchorPaneController.displayLoginView();
         }
     }
 
     // checks that given passwords match
-    private boolean verifyPassword(String pass1, String pass2){
+    public boolean verifyPassword(String pass1, String pass2){
         if (pass1.equals(pass2)) {
             return true;
         }

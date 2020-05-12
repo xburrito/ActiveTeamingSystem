@@ -8,12 +8,12 @@ public class MessagesAnchorPaneController {
     // ActiveTeamingSystem Model
     private ActiveTeamingSystem systemModel;
 
-    // gets mainController
-    void injectMainController(MainAnchorPaneController mainAnchorPaneController) {
+    // gets mainController and mainModel
+    void injectMainControllerAndMainModel(MainAnchorPaneController mainAnchorPaneController, ActiveTeamingSystem mainModel) {
         this.mainAnchorPaneController = mainAnchorPaneController;
-    }
-    // gets mainModel
-    void injectMainModel(ActiveTeamingSystem systemModel) {
         this.systemModel = systemModel;
+
+        // also, initialize required fields
     }
+
 }

@@ -93,7 +93,7 @@ public class ActiveTeamingSystem {
             Scanner inputFile = new Scanner(new File(filePath));
 
             // skip first line (column names)
-            inputFile.nextLine();
+            //inputFile.nextLine();
 
             // while there is another line in the file
             while (inputFile.hasNextLine()) {
@@ -136,7 +136,7 @@ public class ActiveTeamingSystem {
             Scanner inputFile = new Scanner(new File(filePath));
 
             // skip first line (column names)
-            inputFile.nextLine();
+            //inputFile.nextLine();
 
             // while there is another line in the file
             while (inputFile.hasNextLine()) {

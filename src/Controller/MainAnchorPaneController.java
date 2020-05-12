@@ -17,6 +17,8 @@ import java.util.Optional;
 public class MainAnchorPaneController {
     // main Controller
     private MainAnchorPaneController mainAnchorPaneController;
+    // ActiveTeamingSystem Model
+    private ActiveTeamingSystem systemModel;
 
     //@FXML private AnchorPane browserAnchorPane;
     //@FXML private AnchorPane loginAnchorPane;
@@ -59,43 +61,29 @@ public class MainAnchorPaneController {
     @FXML private SettingsAnchorPaneController settingsAnchorPaneController;
     @FXML private VotingReputationAnchorPaneController votingReputationAnchorPaneController;
 
-    // ActiveTeamingSystem Model
-    private ActiveTeamingSystem systemModel;
 
-
-    public MainAnchorPaneController() {
+    public MainAnchorPaneController() { // Note: constructors Always are executed first then initialize()
         // create and initialize the System Model
-        systemModel = new ActiveTeamingSystem();
+        //systemModel = new ActiveTeamingSystem();
 
     }
 
 
-    @FXML private void initialize() throws Exception {
-        // create and initialize the System Model
-       //systemModel = new ActiveTeamingSystem();
+    @FXML private void initialize() throws Exception { // Note: other controllers, can also trigger their own initializers, but
+        // create and initialize the System Model      // since they all execute at the "same" time they cannot receive the model first,
+       systemModel = new ActiveTeamingSystem();        // as when they try to get the model, the model doesn't exist YET.
 
-        // CONNECT this MainController to all other controllers
-        // send mainController to homeController
-        homeAnchorPaneController.injectMainController(this);
-        browseAnchorPaneController.injectMainController(this);
-        loginAnchorPaneController.injectMainController(this);
-        groupsAnchorPaneController.injectMainController(this);
-        messagesAnchorPaneController.injectMainController(this);
-        projectsAnchorPaneController.injectMainController(this);
-        registerAnchorPaneController.injectMainController(this);
-        settingsAnchorPaneController.injectMainController(this);
-        votingReputationAnchorPaneController.injectMainController(this);
+        // CONNECT this MainController and the Main model to all other controllers
+        homeAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
+        browseAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
+        loginAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
+        groupsAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
+        messagesAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
+        projectsAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
+        registerAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
+        settingsAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
+        votingReputationAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
 
-        // CONNECT this systemModel to all other controllers
-        homeAnchorPaneController.injectMainModel(systemModel);
-        browseAnchorPaneController.injectMainModel(systemModel);
-        groupsAnchorPaneController.injectMainModel(systemModel);
-        loginAnchorPaneController.injectMainModel(systemModel);
-        messagesAnchorPaneController.injectMainModel(systemModel);
-        projectsAnchorPaneController.injectMainModel(systemModel);
-        registerAnchorPaneController.injectMainModel(systemModel);
-        settingsAnchorPaneController.injectMainModel(systemModel);
-        votingReputationAnchorPaneController.injectMainModel(systemModel);
 
 
         // get user records from external file
@@ -106,8 +94,6 @@ public class MainAnchorPaneController {
 
         // get group records from external file
         //systemModel.readFileToGroup("PATH");
-
-
     }
 
     String buttonDefaultColor = "-fx-background-color:#00C5FF;";
@@ -188,6 +174,7 @@ public class MainAnchorPaneController {
             buttonSettings.setStyle("-fx-background-color:#00909e;");
             buttonLogOut.setStyle(buttonDefaultColor);
 
+            settingsAnchorPaneController.triggerInitializationOfSettingsView();
             settingsAnchorPane.toFront();
         }
         else if (event.getSource() == buttonLogOut) {

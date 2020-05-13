@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.ActiveTeamingSystem;
+import Model.Application;
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,6 +43,10 @@ public class RegisterAnchorPaneController {
         this.mainAnchorPaneController = mainAnchorPaneController;
         this.systemModel = mainModel;
 
+        // for debugging check that the main controller and model was injected successfully!
+        System.out.println("Register Controller contains Main Controller? " + (this.mainAnchorPaneController!=null));
+        System.out.println("Register Controller contains Main Model? " + (this.systemModel!=null));
+
         // also, initialize required fields
     }
 
@@ -72,29 +77,38 @@ public class RegisterAnchorPaneController {
                     !fieldPassConfirm.getText().equals("") && !fieldReference.getText().equals("")) {
 
                 // get password
-                String password = fieldPassword.getText();
+                String applicantPassword = fieldPassword.getText();
                 String passConfirm = fieldPassConfirm.getText();
                 // check that passwords match
-                if (verifyPassword(password, passConfirm)) {
-                    // get other fields
-                    String username = fieldUsername.getText();
-                    String email = fieldEmail.getText();
-                    String dateOfBirth = datePickerDOB.getValue().toString();
-
-                    String referrer = fieldReference.getText();
-                    String radio = radioGroup.getSelectedToggle().toString();
+                if (verifyPassword(applicantPassword, passConfirm)) {
+                    // get application fields
+                    String submissionDate = "May 7, 2020"; // later get current date from system
+                    String applicantUsername = fieldUsername.getText();
+                    String applicantName = "Name: "+applicantUsername; // since we forgot the name field on the registration page.
+                    String applicantEmail = fieldEmail.getText();
+                    String applicantDOB = datePickerDOB.getValue().toString();
+                    String applicantReferrer = fieldReference.getText();
+                    String applicantReferrerStatus = radioGroup.getSelectedToggle().toString();
+                    // String applicantReferrerStatus = radioGroup.getSelectedToggle().getUserData().toString();
 
                     // for debuggin only: print all entered fields
-                    System.out.println(username);
-                    System.out.println(email);
-                    System.out.println(dateOfBirth);
-                    System.out.println(password);
-                    System.out.println(passConfirm);
-                    System.out.println(referrer);
-                    System.out.println(radio);
+//                    System.out.println(applicantUsername);
+//                    System.out.println(applicantEmail);
+//                    System.out.println(applicantDOB);
+//                    System.out.println(applicantPassword);
+//                    System.out.println(passConfirm);
+//                    System.out.println(applicantReferrer);
+//                    System.out.println(applicantReferrerStatus);
 
-                    // Send application to SU
-                   // systemModel.addUser();
+                    // create application
+                    Application newApplication = new Application(submissionDate,applicantDOB,applicantPassword,applicantName,applicantUsername,applicantEmail,applicantReferrer,applicantReferrerStatus);
+                    // send/store application into applicationDB (SU application)
+                    systemModel.storeApplication(newApplication);
+
+                    // ALERT
+                    alertDialog.setHeaderText("System Alert!");
+                    alertDialog.setContentText("Application Sent, if your application gets approved by the SU, you will be able to sign in!");
+                    alertDialog.showAndWait();
 
                 } else {
                     // ALERT
@@ -103,7 +117,6 @@ public class RegisterAnchorPaneController {
                     alertDialog.showAndWait();
                 }
 
-                // SEND FORM "NOTIFICATION" TO SU
             } else {
                 // ALERT
                 alertDialog.setHeaderText("Empty Fields!");

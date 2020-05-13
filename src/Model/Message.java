@@ -2,23 +2,23 @@ package Model;
 
 // Message/Notification
 public class Message {
-    String messageType; // application or request for group collaboration
+    String messageType; // collab or normal
     String messageDate;
     String senderUsername;
-    Application application;
+    String receiverUsername;
     String Note;
 
+
     //parameterized costructor
-    public Message(String messageType, String messageDate, String senderUsername, Application application, String note) {
+    public Message(String messageType, String messageDate, String senderUsername, String receiverUsername, String note) {
         this.messageType = messageType;
         this.messageDate = messageDate;
         this.senderUsername = senderUsername;
-        this.application = application;
+        this.receiverUsername = receiverUsername;
         Note = note;
     }
 
     // setters and getters
-
 
     public String getMessageType() {
         return messageType;
@@ -44,12 +44,12 @@ public class Message {
         this.senderUsername = senderUsername;
     }
 
-    public Application getApplication() {
-        return application;
+    public String getReceiverUsername() {
+        return receiverUsername;
     }
 
-    public void setApplication(Application application) {
-        this.application = application;
+    public void setReceiverUsername(String receiverUsername) {
+        this.receiverUsername = receiverUsername;
     }
 
     public String getNote() {
@@ -66,7 +66,7 @@ public class Message {
                 "messageType='" + messageType + '\'' +
                 ", messageDate='" + messageDate + '\'' +
                 ", senderUsername='" + senderUsername + '\'' +
-                ", application=" + application +
+                ", receiverUsername=" + receiverUsername +
                 ", Note='" + Note + '\'' +
                 '}';
     }

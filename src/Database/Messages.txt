@@ -1,0 +1,8 @@
+
+Report,May 202,Visitor,Visitor,Danni: Spamming
+collab,May 2020,JackVIP,JackVIP,message from JackVIP
+Collab,May 2020,JackOU,JackVIP,Wanna Collab
+normal,May 2020,JackOU,JackOU,message from JackOU
+Normal,May 2020,JackVIP,JackOU,YO
+Collab,May 2020,JackVIP,JackOU,Colab??
+messageType,messageDate,senderUsername,senderUsername,Note

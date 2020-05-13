@@ -13,6 +13,11 @@ public class VotingReputationAnchorPaneController {
         this.mainAnchorPaneController = mainAnchorPaneController;
         this.systemModel = mainModel;
 
+        // for debugging check that the main controller and model was injected successfully!
+        System.out.println("Voting Controller contains Main Controller? " + (this.mainAnchorPaneController!=null));
+        System.out.println("Voting Controller contains Main Model? " + (this.systemModel!=null));
+
+
         // also, initialize required fields
     }
 

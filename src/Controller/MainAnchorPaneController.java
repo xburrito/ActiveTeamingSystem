@@ -74,11 +74,19 @@ public class MainAnchorPaneController {
        systemModel = new ActiveTeamingSystem();        // as when they try to get the model, the model doesn't exist YET.
 
         // get user records from external file
-        systemModel.readFileToUser("src/Database/User_database.csv");
+        systemModel.loadFileToUserDB("src/Database/User.csv");
 
         // get group records from external file
-        systemModel.readFileToGroup("src/Database/Groups.csv");
+        systemModel.loadFileToGroupDB("src/Database/Groups.csv");
 
+        // get message records from external file
+        systemModel.loadFileToMessageDB("src/Database/Messages.txt");
+
+        // get application records from external file
+        systemModel.loadFileToApplicationDB("src/Database/Application.txt");
+
+        // get application records from external file
+        systemModel.loadFileToProjectDB("src/Database/Project.txt");
 
         // CONNECT this MainController and the Main model to all other controllers
         homeAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
@@ -124,10 +132,17 @@ public class MainAnchorPaneController {
             buttonSettings.setStyle(buttonDefaultColor);
             buttonLogOut.setStyle(buttonDefaultColor);
 
+            // display message list view
             messagesAnchorPane.toFront();
-            //borderPaneTransactions.toFront();
-            //borderPaneTransactions.setVisible(true);
-            //borderPanePortfolio.setVisible(false);
+
+            // check that user is SU first then Populate incoming applications!
+            System.out.println(systemModel.getLoggedUser().getStatus());
+            if (systemModel.getLoggedUser().getStatus().equals("SU")) {
+                messagesAnchorPaneController.populateMessagesSUListView();
+                messagesAnchorPaneController.populateApplicationListsView();
+            } else { // for other users VIP and OU
+                messagesAnchorPaneController.populateMessagesListView();
+            }
         }
         else if (event.getSource() == buttonGroups) {
             buttonHomePage.setStyle(buttonDefaultColor);
@@ -138,6 +153,7 @@ public class MainAnchorPaneController {
             buttonSettings.setStyle(buttonDefaultColor);
             buttonLogOut.setStyle(buttonDefaultColor);
 
+            groupsAnchorPaneController.populateGroupsListsView();
             groupsAnchorPane.toFront();
         }
         else if (event.getSource() == buttonProjects) {
@@ -149,6 +165,7 @@ public class MainAnchorPaneController {
             buttonSettings.setStyle(buttonDefaultColor);
             buttonLogOut.setStyle(buttonDefaultColor);
 
+            projectsAnchorPaneController.populateProjectsListsView();
             projectsAnchorPane.toFront();
         }
         else if (event.getSource() == buttonVotingReputation) {
@@ -199,15 +216,6 @@ public class MainAnchorPaneController {
             }
 
         }
-//        else if (event.getSource() == browseController.getButton()) {
-//            browseController.getButton().setStyle("-fx-background-color:#696969;");
-//            //buttonRegister.setStyle(buttonDefaultColor);
-//
-//            loginAnchorPane.toFront();
-//            System.out.println("WTF");
-//            //mainController.getLoginAnchorPane();
-//            //borderPaneTransactions.setVisible(false);
-//        }
     } // end handle button
 
     // brings LoginArchorPane to the front.

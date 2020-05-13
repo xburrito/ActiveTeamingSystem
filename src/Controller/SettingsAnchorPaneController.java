@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.ActiveTeamingSystem;
-import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import com.jfoenix.controls.JFXButton;
@@ -38,6 +37,10 @@ public class SettingsAnchorPaneController {
     void injectMainControllerAndMainModel(MainAnchorPaneController mainAnchorPaneController, ActiveTeamingSystem mainModel) {
         this.mainAnchorPaneController = mainAnchorPaneController;
         this.systemModel = mainModel;
+
+        // for debugging check that the main controller and model was injected successfully!
+        System.out.println("Settings Controller contains Main Controller? " + (this.mainAnchorPaneController!=null));
+        System.out.println("Settings Controller contains Main Model? " + (this.systemModel!=null));
 
         // also, initialize required fields
     }
@@ -78,7 +81,7 @@ public class SettingsAnchorPaneController {
             }
         }
         // save changes to external database
-        systemModel.overwriteUserFile("src/Database/User_database.csv");
+        systemModel.saveUserDBToFile("src/Database/User.csv");
     }
 
     // this methods populates settings fields. it gets triggered when the user clicks the setting tab
@@ -87,7 +90,7 @@ public class SettingsAnchorPaneController {
 
         // set fields
         labelFirstName.setText(systemModel.getLoggedUser().getFirstName());
-        labelLastName.setText(systemModel.getLoggedUser().getFirstName());
+        labelLastName.setText(systemModel.getLoggedUser().getLastName());
         fieldUsername.setText(systemModel.getLoggedUser().getUserName());
         fieldEmail.setText(systemModel.getLoggedUser().getEmail());
     }

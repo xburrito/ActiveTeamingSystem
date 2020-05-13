@@ -38,6 +38,10 @@ public class LoginAnchorPaneController {
         this.mainAnchorPaneController = mainAnchorPaneController;
         this.systemModel = mainModel;
 
+        // for debugging check that the main controller and model was injected successfully!
+        System.out.println("Login Controller contains Main Controller? " + (this.mainAnchorPaneController!=null));
+        System.out.println("Login Controller contains Main Model? " + (this.systemModel!=null));
+
         // also, initialize required fields
     }
 
@@ -62,6 +66,7 @@ public class LoginAnchorPaneController {
                 mainAnchorPaneController.setLabelStatus(loggedUser.getStatus());
                 // display main view
                 mainAnchorPaneController.displayMainView();
+
             } else {
                 alertDialog.setTitle("System Alert");
                 alertDialog.setHeaderText("Authentication Failed");

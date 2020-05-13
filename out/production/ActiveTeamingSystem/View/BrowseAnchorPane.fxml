@@ -20,5 +20,6 @@
       <JFXButton fx:id="buttonLoadMoreTeams" layoutX="751.0" layoutY="489.0" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="120.0" text="Load More Teams" />
       <Label layoutX="26.0" layoutY="87.0" text="Top Profiles:" />
       <Label layoutX="28.0" layoutY="370.0" text="Top Teams:" />
+      <JFXButton fx:id="buttonReportUser" layoutX="822.0" layoutY="22.0" onAction="#handleButtonAction" text="Report User" />
    </children>
 </AnchorPane>

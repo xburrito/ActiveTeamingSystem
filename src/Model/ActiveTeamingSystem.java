@@ -1,9 +1,7 @@
 package Model;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ActiveTeamingSystem {
     // ArrayList, holds all data from user database
@@ -14,6 +12,8 @@ public class ActiveTeamingSystem {
     private List<TopProfile> topProfilesList;
     // ArrayList, holds profiles for displayal
     private List<TopProfile> profileList;
+    // ArrayList, holds projects for displayal
+    private List<Project> projectDB;
     // Logged in User
     private User loggedUser;
     // group of Logged in user
@@ -22,7 +22,6 @@ public class ActiveTeamingSystem {
     //private List<User> blackList;
     // Rejected Applications List
     //private List<User> rejectedList;
-
 
     // default constructor
     public ActiveTeamingSystem(){
@@ -34,7 +33,139 @@ public class ActiveTeamingSystem {
         topProfilesList = new ArrayList<TopProfile>();
         // initialize profileList
         profileList = new ArrayList<TopProfile>();
+        // initialize hashmap to hold the messages and notification of each user
+        messagesDB = new HashMap<String, Deque<Message>>();
+        // initialize hashmap to hold the applications of visitors
+        applicationDB = new HashMap<String, Deque<Application>>();
+        // initaliza projectDB
+        projectDB = new ArrayList<Project>();
+
     }
+
+
+    public List<Project> getProjectList() {
+        return projectDB;
+    }
+
+    public void setProjectList(List<Project> projectDB) {
+        this.projectDB = projectDB;
+    }
+
+    // hashmap to hold the messages and notification of each user
+    private HashMap<String, Deque<Message>> messagesDB;
+
+    // hashmap to hold the applications of visitors
+    private HashMap<String, Deque<Application>> applicationDB;
+
+    public List<User> getUserDB() {
+        return userDB;
+    }
+
+    public void setUserDB(List<User> userDB) {
+        this.userDB = userDB;
+    }
+
+    public List<Group> getGroupDB() {
+        return groupDB;
+    }
+
+    public void setGroupDB(List<Group> groupDB) {
+        this.groupDB = groupDB;
+    }
+
+    public void setTopProfilesList(List<TopProfile> topProfilesList) {
+        this.topProfilesList = topProfilesList;
+    }
+
+    public List<TopProfile> getProfileList() {
+        return profileList;
+    }
+
+    public void setProfileList(List<TopProfile> profileList) {
+        this.profileList = profileList;
+    }
+
+    public void setMessagesDB(HashMap<String, Deque<Message>> messagesDB) {
+        this.messagesDB = messagesDB;
+    }
+
+    public HashMap<String, Deque<Application>> getApplicationDB() {
+        return applicationDB;
+    }
+
+    public void setApplicationDB(HashMap<String, Deque<Application>> applicationDB) {
+        this.applicationDB = applicationDB;
+    }
+
+    // get messagesDB
+    public HashMap<String, Deque<Message>> getMessagesDB() {
+        return messagesDB;
+    }
+
+    // find and get list of messages from passed user
+    public List<Message> getMessagesList(String userID) {
+        List<Message> messageList = new LinkedList<Message>();
+
+        // iterate dictionary (HashMap) and deque for the userID
+        if(messagesDB.containsKey(userID)) {
+            // iterate message deque
+            Iterator<Message> iterator = messagesDB.get(userID).iterator();
+            while (iterator.hasNext()) {
+                Message currentMessage = (Message) iterator.next();
+                // add application into applicationList
+                messageList.add(currentMessage);
+            }
+            // returns messageList
+            return messageList;
+        } // else no messages found
+        System.out.println("no messages found for " + userID);
+        return null;
+    }
+
+    // find and get deque of Application from passed applicant
+    public List<Application> getApplicationList() {
+        List<Application> applicationList = new LinkedList<Application>();
+
+        // iterate dictionary (HashMap) and deque for the applicantID
+        if(!applicationDB.isEmpty()) {
+            Iterator it = applicationDB.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry)it.next();
+                // iterate application deque
+                Iterator<Application> iterator = applicationDB.get(pair.getKey()).iterator();
+                while (iterator.hasNext()) {
+                    Application currentApplication = (Application) iterator.next();
+                    // add application into applicationList
+                    applicationList.add(currentApplication);
+                }
+            }
+
+            // returns found deque of Application from specified applicant
+            return applicationList;
+        } // else no Applications found
+        System.out.println("no Applications found");
+        return null;
+    }
+
+
+//    // find and get messages from passed user
+//    public double getMessagesList(int userID) {
+//
+//        // iterate dictionary (HashMap) and deque for the userID
+//        if(messagesDB.containsKey(userID)) {
+//            // iterate coin deque
+//            Iterator<Message> iterator = messagesDB.get(message).iterator();
+//            while (iterator.hasNext()) {
+//                Message currentMessage = (Message) iterator.next();
+//                if (currentMessage.getTradeId() == tradeId) {
+//                    return currentMessage.getQunatity().doubleValue();
+//                }
+//            }
+//        }
+//        //System.out.println("no holdings found for " + coin);
+//        return 0;
+//    }
+
 
     // add user into userDB, (it adds users sorted from lowest to highest reputations score)
     public void addUser(String dayOfBirth, String dateJoined, int userID, String password, String email, String username, String lastName, String firstName, int repScore, String status) {
@@ -64,9 +195,15 @@ public class ActiveTeamingSystem {
 
     // add Group into groupDB, (it adds groups sorted from lowest to highest reputations score)
     //Group_ID,Group_Name,Group_Leader,Member_Count
-    public void addGroup(int groupID, String groupName, String groupLeader, int memberCount) {
+    public void addGroupToDB(String groupID, String groupName, String groupLeader, List<User> groupMembersList) {
         // simply add the new record
-        groupDB.add(new Group(groupID, groupName, groupLeader, memberCount));
+        groupDB.add(new Group(groupID, groupName, groupLeader, groupMembersList));
+    }
+
+    // add Group into projectDB, (it adds groups sorted from lowest to highest reputations score)
+    public void addProjectToDB(String projectName, String projectGroup, int projectScore) {
+        // simply add the new record
+        projectDB.add(new Project(projectName,projectGroup,projectScore));
     }
 
     // remove a user from the userDB
@@ -82,7 +219,7 @@ public class ActiveTeamingSystem {
     }
 
     // remove a group from the groupDB
-    public Group removeGroup(int groupID) {
+    public Group removeGroup(String groupID) {
         Group removed = null;
 
         for (int i=0; i<groupDB.size();i++) {
@@ -96,7 +233,7 @@ public class ActiveTeamingSystem {
 
     // Reads file and loads the data into userDB
     // database columns: D.O.B.,Date Joined,User_ID,Password (Not Hashed Yet),Email,Username,Last_Name,First_Name,Rep_Score,Status
-    public void readFileToUser(String filePath) throws Exception {
+    public void loadFileToUserDB(String filePath) throws Exception {
         try {
             // file to read
             Scanner inputFile = new Scanner(new File(filePath));
@@ -139,7 +276,7 @@ public class ActiveTeamingSystem {
     }
 
     // Reads file and loads the data into groupDB
-    public void readFileToGroup(String filePath) throws Exception {
+    public void loadFileToGroupDB(String filePath) throws Exception {
         try {
             // file to read
             Scanner inputFile = new Scanner(new File(filePath));
@@ -158,13 +295,13 @@ public class ActiveTeamingSystem {
                     //System.out.println(userRecords.length); // for debugging
 
                     // get all values
-                    int groupID = Integer.parseInt(groupRecords[0]);
+                    String groupID = groupRecords[0];
                     String groupName = groupRecords[1];
                     String groupLeader = groupRecords[2];
-                    int memberCount = Integer.parseInt(groupRecords[3]);
+                    List<User> membersList = converToMembersList(groupRecords[3]);
 
                     // add into groupDB
-                    addGroup(groupID, groupName, groupLeader, memberCount);
+                    addGroupToDB(groupID, groupName, groupLeader, membersList);
                 }
             }
             // close scanner
@@ -174,6 +311,86 @@ public class ActiveTeamingSystem {
             System.out.println("Specified File could not be found!");
         }
     }
+
+    // Reads file and loads the applications into applicationDB
+    public void loadFileToApplicationDB(String filePath) throws Exception {
+        try {
+            // file to read
+            Scanner inputFile = new Scanner(new File(filePath));
+
+            // skip first line (column names)
+            //inputFile.nextLine();
+
+            // while there is another line in the file
+            while (inputFile.hasNextLine()) {
+                // get line
+                String currentLine = inputFile.nextLine();
+                //System.out.println(currentLine + "CurrentLine: " + currentLine); // for debugging
+                if (!currentLine.equals("")) {
+                    // split line
+                    String[] applicationRecords = currentLine.split(",");
+                    //System.out.println(userRecords.length); // for debugging
+
+                    String submissionDate = applicationRecords[0];
+                    String applicantName = applicationRecords[1];
+                    String applicantEmail = applicationRecords[2];
+                    String applicantDOB = applicationRecords[3];
+                    String applicantUsername = applicationRecords[4];
+                    String applicantPassword = applicationRecords[5];
+                    String applicantReferrer = applicationRecords[6];
+                    String applicantReferrerStatus = applicationRecords[7];
+
+                    // add into applicationDB
+                    storeApplication(new Application(submissionDate, applicantName, applicantEmail, applicantDOB,applicantUsername, applicantPassword, applicantReferrer,applicantReferrerStatus));
+                }
+            }
+            // close scanner
+            inputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+    // Reads file and loads the message into messagesDB
+    public void loadFileToMessageDB(String filePath) throws Exception {
+        try {
+            // file to read
+            Scanner inputFile = new Scanner(new File(filePath));
+
+            // skip first line (column names)
+            //inputFile.nextLine();
+
+            // while there is another line in the file
+            while (inputFile.hasNextLine()) {
+                // get line
+                String currentLine = inputFile.nextLine();
+                //System.out.println(currentLine + "CurrentLine: " + currentLine); // for debugging
+                if (!currentLine.equals("")) {
+                    // split line
+                    String[] messageRecords = currentLine.split(",");
+                    //System.out.println(userRecords.length); // for debugging
+
+                    // get all values
+                    String messageType = messageRecords[0];
+                    String messageDate = messageRecords[1];
+                    String senderUsername = messageRecords[2];
+                    String receiverUsername = messageRecords[3];
+                    String Note = messageRecords[4];
+
+                    // add into messageDB
+                    storeMessage(new Message(messageType, messageDate, senderUsername, receiverUsername,Note));
+                }
+            }
+            // close scanner
+            inputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+
 
     // saves new user into external file
     public void saveUserToFile(String dateOfBirth, String dateJoined, int userID, String password, String email, String username, String lastName, String firstName, int repScore, String status) throws IOException {
@@ -202,9 +419,7 @@ public class ActiveTeamingSystem {
     }
 
     // writes the complete userDB to the user database external file
-    public void overwriteUserFile(String filePath) throws IOException {
-        // ok when we remove a user from our userDB the user is also removed from the external user database
-        // so I just have to make a copy of the database and overwrite the external file.
+    public void saveUserDBToFile(String filePath) throws IOException {
         try {
             BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath));
 
@@ -224,7 +439,7 @@ public class ActiveTeamingSystem {
                 String repScore = String.valueOf(currentUser.getRepScore());
                 String status = currentUser.getStatus();
 
-                // format transaction properties to string
+                // format user properties to string
                 String userStr = dateOfBirth + "," + dateJoined + "," + userID + "," + password + "," + email + "," + username + "," + lastName + "," + firstName + "," + repScore + "," + status;
 
                 // write the string
@@ -241,7 +456,7 @@ public class ActiveTeamingSystem {
     }
 
     // writes the complete groupDB to the groups database external file
-    public void overwriteGroupFile(String filePath) throws IOException {
+    public void saveGroupDBToFile(String filePath) throws IOException {
         // ok when we remove a group from our groupDB the user is also removed from the external group database
         // so I just have to make a copy of the database and overwrite the external file.
         try {
@@ -255,17 +470,101 @@ public class ActiveTeamingSystem {
                 String groupID = String.valueOf(currentGroup.getGroupID());
                 String groupName = currentGroup.getGroupName();
                 String groupLeader = currentGroup.getGroupLeader();
-                String memberCount = String.valueOf(currentGroup.getMemberCount());
+                String groupMembersList = currentGroup.membersToString();
 
-
-                // format transaction properties to string
-                String groupStr = groupID + "," + groupName + "," + groupLeader + "," + memberCount;
+                // format group properties to string
+                String groupStr = groupID + "," + groupName + "," + groupLeader + "," + groupMembersList;
 
                 // write the string
                 outputFile.newLine(); // select next line
                 outputFile.write(groupStr); // write word
             }
 
+            // close file
+            outputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+    // writes the complete messageDB to the message database external file
+    public void saveMessageDBToFile(String filePath) throws IOException {
+        try {
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath));
+
+            // iterate dictionary (HashMap) and deque for the applicantID
+            if(!messagesDB.isEmpty()) {
+                Iterator it = messagesDB.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry pair = (Map.Entry)it.next();
+                    // iterate message deque
+                    Iterator<Message> iterator = messagesDB.get(pair.getKey()).iterator();
+                    while (iterator.hasNext()) {
+
+                        // currentMessage
+                        Message currentMessage = (Message) iterator.next();
+
+                        // get fields
+                        String messageType = currentMessage.getMessageType();
+                        String messageDate= currentMessage.getMessageDate();
+                        String senderUsername= currentMessage.getSenderUsername();
+                        String receiverUsername= currentMessage.getReceiverUsername();
+                        String Note= currentMessage.getNote();
+
+                        // format message properties to string
+                        String groupStr = messageType + "," + messageDate + "," + senderUsername + "," + receiverUsername + "," + Note;
+
+                        // write the string
+                        outputFile.newLine(); // select next line
+                        outputFile.write(groupStr); // write word
+                    }
+                }
+            }
+            // close file
+            outputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+    // writes the complete applicationDB to the application database external file
+    public void saveApplicationDBToFile(String filePath) throws IOException {
+        try {
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath));
+
+            // iterate dictionary (HashMap) and deque for the applicantID
+            if(!applicationDB.isEmpty()) {
+                Iterator it = applicationDB.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry pair = (Map.Entry)it.next();
+                    // iterate application deque
+                    Iterator<Application> iterator = applicationDB.get(pair.getKey()).iterator();
+                    while (iterator.hasNext()) {
+
+                        // currentApplication
+                        Application currentApplication = (Application) iterator.next();
+
+                        // get fields
+                        String submissionDate = currentApplication.getSubmissionDate();
+                        String applicantName = currentApplication.getApplicantName();
+                        String applicantEmail = currentApplication.getApplicantEmail();
+                        String applicantDOB = currentApplication.getApplicantDOB();
+                        String applicantUsername = currentApplication.getApplicantUsername();
+                        String applicantPassword = currentApplication.getApplicantPassword();
+                        String applicantReferrer = currentApplication.getApplicantReferrer();
+                        String applicantReferrerStatus = currentApplication.getApplicantReferrerStatus();
+
+                        // format application properties to string
+                        String groupStr = submissionDate + "," + applicantName + "," + applicantEmail + "," + applicantDOB + "," + applicantUsername+ "," + applicantPassword + "," + applicantReferrer + "," + applicantReferrerStatus;
+
+                        // write the string
+                        outputFile.newLine(); // select next line
+                        outputFile.write(groupStr); // write word
+                    }
+                }
+            }
             // close file
             outputFile.close();
             // catch exceptions
@@ -390,6 +689,139 @@ public class ActiveTeamingSystem {
             }
         }// user not found
         return false;
+    }
+
+    // stores messages into messages database
+
+    // stores application into application database
+    public void storeApplication(Application newApplication) {
+
+        // generate application Id from email and DOB
+        String applicationID = newApplication.getApplicantEmail() + "-" + newApplication.getApplicantDOB();
+
+        // check if applicant already has a previous application on the system "applicationDB"
+        if(applicationDB.containsKey(applicationID)) {
+            // add application into existing applicationDB deque
+            applicationDB.get(applicationID).add(newApplication);
+        } else { // store new application
+            // create new application deque for new application
+            Deque<Application> applicationDeque = new LinkedList<Application>();
+            // add new applicationDB into deque
+            applicationDeque.add(newApplication);
+            // add (key/application) and (deque/value) to "Dictionary"
+            applicationDB.put(applicationID, applicationDeque);
+        }
+    }
+
+    // stores message into message database
+    public void storeMessage(Message newMessage) {
+
+        // applicationID = receiver username
+        String messageId = newMessage.getReceiverUsername();
+
+        // check if receiver already has a previous message on the system "applicationDB"
+        if(messagesDB.containsKey(messageId)) {
+            // add message into existing messageDB deque
+            messagesDB.get(messageId).add(newMessage);
+        } else { // store new message
+            // create new message deque for the messageDB
+            Deque<Message> messageDeque = new LinkedList<Message>();
+            // add new message into deque
+            messageDeque.add(newMessage);
+            // add (key/message) and (deque/value) to "Dictionary"
+            messagesDB.put(messageId, messageDeque);
+        }
+    }
+
+    // find and return user, given username
+    public User findUser(String username){
+
+        // iterate database
+        for (User user: userDB){
+            // if current username = given username
+            if(user.getUserName().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+
+    // Reads file and loads the data into projectDB
+    public void loadFileToProjectDB(String filePath) throws Exception {
+        try {
+            // file to read
+            Scanner inputFile = new Scanner(new File(filePath));
+
+            // skip first line (column names)
+            //inputFile.nextLine();
+
+            // while there is another line in the file
+            while (inputFile.hasNextLine()) {
+                // get line
+                String currentLine = inputFile.nextLine();
+                //System.out.println(currentLine + "CurrentLine: " + currentLine); // for debugging
+                if (!currentLine.equals("")) {
+                    // split line
+                    String[] projectRecords = currentLine.split(",");
+                    //System.out.println(userRecords.length); // for debugging
+
+                    // get all values
+                    String projectName = projectRecords[0];
+                    String projectGroup = projectRecords[1];
+                    int projectScore = Integer.parseInt(projectRecords[2]);
+
+                    // add into projectDB
+                    addProjectToDB(projectName,projectGroup, projectScore);
+                }
+            }
+            // close scanner
+            inputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+    // writes the complete projectDB to the projects database external file
+    public void saveProjectDBToFile(String filePath) throws IOException {
+        try {
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath));
+
+            for (int i =0; i< projectDB.size(); i++) {
+                // current project
+                Project currentProject = projectDB.get(i);
+
+                // get fields
+                String projectName = currentProject.getProjectName();
+                String projectGroup = currentProject.getProjectGroup();
+                String projectScore = String.valueOf(currentProject.getProjectScore());
+
+                // format project properties to string
+                String groupStr = projectName + "," + projectGroup + "," + projectScore;
+
+                // write the string
+                outputFile.newLine(); // select next line
+                outputFile.write(groupStr); // write word
+            }
+
+            // close file
+            outputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+    //
+    public List<User> converToMembersList(String strMembersList) {
+        List<User> groupMemberList = new LinkedList<>();
+        // split line
+        String[] membersList = strMembersList.split("-");
+        for (String memberUserName : membersList) {
+            groupMemberList.add(findUser(memberUserName));
+        }
+        return groupMemberList;
     }
 
 } // end ActiveTeamingSystem

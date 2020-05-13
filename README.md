@@ -12,6 +12,9 @@ Team Q Participants:
 -----
 **Softwaire Usage**
 
+Based on the user's statut, s/he can have access to a variety of activities available on the software.
+Some activities are:
+
 Browse
 Register
 
@@ -25,7 +28,7 @@ Vote
 
 Manage group
 
-Increase reutation
+Increase reputation
 
 -----
 

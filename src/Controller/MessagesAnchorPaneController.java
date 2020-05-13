@@ -68,7 +68,7 @@ public class MessagesAnchorPaneController {
                 // create group
                 systemModel.addGroupToDB(groupId, groupName,groupLeader,groupMembers);
                 // backup messageDB
-                systemModel.saveGroupDBToFile("src/Database/Groups.csv");
+                systemModel.saveGroupDBToFile();
 
 
                 // get project fields
@@ -78,17 +78,83 @@ public class MessagesAnchorPaneController {
 
                 // create Project
                 systemModel.addProjectToDB(projectName, projectGroup, projectScore);
-                systemModel.saveProjectDBToFile("src/Database/Project.txt");
+                systemModel.saveProjectDBToFile();
 
-                // create project
 
             }
         } else if (event.getSource() == buttonRejecttInvitation) {
+            // get selected invitation
+            Message invitation = (Message) listViewMessages.getSelectionModel().getSelectedItem();
+
+            // update database
+            systemModel.getMessagesDB().remove(invitation);
+
+            // backup database
+            systemModel.saveMessageDBToFile();
+
+            // refresh view list
+            populateMessagesListView();
+
 
         } else if (event.getSource() == buttonApproveApp) {
+            // get selected Application
+            Application application = (Application) listViewMessages.getSelectionModel().getSelectedItem();
+
+            // potential new USER fields
+            String DOB = application.getApplicantDOB();
+            String dateJoined = "May 13 2020";
+            int userID = (int) (Math.random() * 81 + 20);
+            String password = application.getApplicantPassword();
+            String email = application.getApplicantEmail();
+            String username = application.getApplicantUsername();
+            String lname = username + "LastName";
+            String fname = username + "FirstName";
+            int repScore;
+            String status = "OU";
+
+            // decide initial score based on referrer
+            if (application.getApplicantReferrerStatus().equals("OU")) {
+                repScore = 10;
+            } else if (application.getApplicantReferrerStatus().equals("VIP")) {
+                repScore = 20;
+            } else {
+                repScore = 30;
+            }
+
+            // store new user into userDB
+            systemModel.addUser(DOB,dateJoined,userID,password,email,username,lname,fname,repScore,status);
+            // backup database
+            systemModel.saveUserDBToFile();
+
+            Alert alertDialog = new Alert(Alert.AlertType.INFORMATION);
+            alertDialog.setTitle("System Alert");
+            alertDialog.setHeaderText("Application has been accepted!");
+            alertDialog.setContentText("Click Ok to continue");
+            alertDialog.showAndWait();
+
+            // remove application
+            systemModel.getApplicationDB().remove(application);
+            // backup
+            systemModel.saveApplicationDBToFile();
+
+            // refresh list
+            populateApplicationListsView();
 
         } else if (event.getSource() == buttonRejectApp) {
 
+            // remove application
+            Application application = (Application) listViewMessages.getSelectionModel().getSelectedItem();
+            systemModel.getApplicationDB().remove(application);
+
+            // ADD TO BLACKLIST
+            Alert alertDialog = new Alert(Alert.AlertType.INFORMATION);
+            alertDialog.setTitle("System Alert");
+            alertDialog.setHeaderText("Application will be added to blackList");
+            alertDialog.setContentText("Click Ok to continue");
+            alertDialog.showAndWait();
+
+            // refresh list
+            populateApplicationListsView();
         }
     }
 
@@ -138,8 +204,8 @@ public class MessagesAnchorPaneController {
     public void populateMessagesListView() {
 
         // disable acceptApp and rejectApp buttons for OU and VIP users
-        buttonRejectApp.setVisible(false);
-        buttonApproveApp.setVisible(false);
+        buttonAcceptInvitation.setVisible(false);
+        buttonRejecttInvitation.setVisible(false);
 
 
         // check that there are messages

@@ -1,1 +1,0 @@
-submissionDate,applicantName,applicantEmail,applicantDOB,applicantUsername,applicantPassword,applicantReferrer,applicantReferrerStatus

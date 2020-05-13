@@ -80,6 +80,16 @@ public class Group {
     this.group_Leader = group_Leader;
   }
 
+  public boolean findMember(String username){
+    for (User member : groupMembersList) {
+      if (member.getUserName().equals(username)){
+        return true;
+      }
+    }
+    return false;
+  }
+
+
 
   // utility methods, Note: they are automatically used for GUI Lists Views
   public String toString() {

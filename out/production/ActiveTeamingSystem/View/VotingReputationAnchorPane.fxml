@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,7 +12,7 @@
    <children>
       <VBox fx:id="content_area" prefHeight="67.0" prefWidth="1000.0" style="-fx-background-color: #00C5FF#00C5FF;" AnchorPane.bottomAnchor="633.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="votingReputationAnchorPanevotingReputationAnchorPane" alignment="TOP_LEFT" prefHeight="65.0" prefWidth="463.0" text="Voting / Reputation">
+            <Label fx:id="votingReputationAnchorPanevotingReputationAnchorPane" alignment="TOP_LEFT" prefHeight="65.0" prefWidth="463.0" text="Meetings Poll">
                <font>
                   <Font name="Arial Black" size="43.0" />
                </font>
@@ -20,5 +22,8 @@
             </Label>
          </children>
       </VBox>
+      <JFXListView fx:id="listViewMeetings" layoutX="113.0" layoutY="134.0" prefHeight="291.0" prefWidth="648.0" />
+      <JFXButton fx:id="buttonAccept" layoutX="769.0" layoutY="185.0" onAction="#handleButtonAction" text="Accept" />
+      <JFXButton fx:id="buttonReject" layoutX="770.0" layoutY="266.0" onAction="#handleButtonAction" text="Reject" />
    </children>
 </AnchorPane>

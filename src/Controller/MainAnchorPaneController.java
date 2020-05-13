@@ -74,19 +74,18 @@ public class MainAnchorPaneController {
        systemModel = new ActiveTeamingSystem();        // as when they try to get the model, the model doesn't exist YET.
 
         // get user records from external file
-        systemModel.loadFileToUserDB("src/Database/User.csv");
-
+        systemModel.loadFileToUserDB();
         // get group records from external file
-        systemModel.loadFileToGroupDB("src/Database/Groups.csv");
-
+        systemModel.loadFileToGroupDB();
         // get message records from external file
-        systemModel.loadFileToMessageDB("src/Database/Messages.txt");
-
+        systemModel.loadFileToMessageDB();
         // get application records from external file
-        systemModel.loadFileToApplicationDB("src/Database/Application.txt");
-
+        systemModel.loadFileToApplicationDB();
         // get application records from external file
-        systemModel.loadFileToProjectDB("src/Database/Project.txt");
+        systemModel.loadFileToProjectDB();
+        // get referral records from external file
+        systemModel.loadFileToReferralDB();
+
 
         // CONNECT this MainController and the Main model to all other controllers
         homeAnchorPaneController.injectMainControllerAndMainModel(this, systemModel);
@@ -116,12 +115,6 @@ public class MainAnchorPaneController {
 
             // show home view
             homeAnchorPane.toFront();
-            //mainContentStackPanePane.requestLayout();
-            //homeAnchorPane.setVisible(true);
-            //homeController.getHomeContent();
-            //borderPanePortfolio.setVisible(true);
-            //borderPanePortfolio.toFront();
-            //borderPaneTransactions.setVisible(false);
         }
         else if (event.getSource() == buttonMessages) {
             buttonHomePage.setStyle(buttonDefaultColor);

@@ -22,6 +22,24 @@ public class ActiveTeamingSystem {
     //private List<User> blackList;
     // Rejected Applications List
     //private List<User> rejectedList;
+    // ArrayList, holds all data from group database
+    private List<Referral> referralDB;
+
+    // ArrayList, holds all data from group database
+    private List<Poll> pollDB;
+
+    // ArrayList, holds all data from group database
+    private List<User> blackList;
+
+    // External files paths
+    String applicationDBFilePath ="src/Database/Application.txt";
+    String groupDBFilePath = "src/Database/Groups.csv";
+    String messagesDBFilePath ="src/Database/Messages.txt";
+    String projectDBFilePath ="src/Database/Project.txt";
+    String referralDBFilePath ="src/Database/Referral.txt";
+    String userDBFilePath = "src/Database/User.csv";
+    String pollDBFilePath = "src/Database/Poll.csv";
+    String blacklistDBFilePath = "src/Database/Blacklist.csv";
 
     // default constructor
     public ActiveTeamingSystem(){
@@ -37,11 +55,32 @@ public class ActiveTeamingSystem {
         messagesDB = new HashMap<String, Deque<Message>>();
         // initialize hashmap to hold the applications of visitors
         applicationDB = new HashMap<String, Deque<Application>>();
-        // initaliza projectDB
+        // initalize projectDB
         projectDB = new ArrayList<Project>();
+        // initialize referralDB
+        referralDB = new ArrayList<Referral>();
+        // initialize pollDB
+        pollDB = new ArrayList<Poll>();
+        // initialize blacklist
+        blackList = new ArrayList<User>();
 
     }
 
+    public List<Project> getProjectDB() {
+        return projectDB;
+    }
+
+    public List<Referral> getReferralDB() {
+        return referralDB;
+    }
+
+    public List<Poll> getPollDB() {
+        return pollDB;
+    }
+
+    public List<User> getBlackList() {
+        return blackList;
+    }
 
     public List<Project> getProjectList() {
         return projectDB;
@@ -233,10 +272,10 @@ public class ActiveTeamingSystem {
 
     // Reads file and loads the data into userDB
     // database columns: D.O.B.,Date Joined,User_ID,Password (Not Hashed Yet),Email,Username,Last_Name,First_Name,Rep_Score,Status
-    public void loadFileToUserDB(String filePath) throws Exception {
+    public void loadFileToUserDB() throws Exception {
         try {
             // file to read
-            Scanner inputFile = new Scanner(new File(filePath));
+            Scanner inputFile = new Scanner(new File(userDBFilePath));
 
             // skip first line (column names)
             //inputFile.nextLine();
@@ -276,10 +315,10 @@ public class ActiveTeamingSystem {
     }
 
     // Reads file and loads the data into groupDB
-    public void loadFileToGroupDB(String filePath) throws Exception {
+    public void loadFileToGroupDB() throws Exception {
         try {
             // file to read
-            Scanner inputFile = new Scanner(new File(filePath));
+            Scanner inputFile = new Scanner(new File(groupDBFilePath));
 
             // skip first line (column names)
             //inputFile.nextLine();
@@ -313,10 +352,10 @@ public class ActiveTeamingSystem {
     }
 
     // Reads file and loads the applications into applicationDB
-    public void loadFileToApplicationDB(String filePath) throws Exception {
+    public void loadFileToApplicationDB() throws Exception {
         try {
             // file to read
-            Scanner inputFile = new Scanner(new File(filePath));
+            Scanner inputFile = new Scanner(new File(applicationDBFilePath));
 
             // skip first line (column names)
             //inputFile.nextLine();
@@ -341,7 +380,7 @@ public class ActiveTeamingSystem {
                     String applicantReferrerStatus = applicationRecords[7];
 
                     // add into applicationDB
-                    storeApplication(new Application(submissionDate, applicantName, applicantEmail, applicantDOB,applicantUsername, applicantPassword, applicantReferrer,applicantReferrerStatus));
+                    addApplicationToDB(new Application(submissionDate, applicantName, applicantEmail, applicantDOB,applicantUsername, applicantPassword, applicantReferrer,applicantReferrerStatus));
                 }
             }
             // close scanner
@@ -353,10 +392,10 @@ public class ActiveTeamingSystem {
     }
 
     // Reads file and loads the message into messagesDB
-    public void loadFileToMessageDB(String filePath) throws Exception {
+    public void loadFileToMessageDB() throws Exception {
         try {
             // file to read
-            Scanner inputFile = new Scanner(new File(filePath));
+            Scanner inputFile = new Scanner(new File(messagesDBFilePath));
 
             // skip first line (column names)
             //inputFile.nextLine();
@@ -379,7 +418,7 @@ public class ActiveTeamingSystem {
                     String Note = messageRecords[4];
 
                     // add into messageDB
-                    storeMessage(new Message(messageType, messageDate, senderUsername, receiverUsername,Note));
+                    addMessageToDB(new Message(messageType, messageDate, senderUsername, receiverUsername,Note));
                 }
             }
             // close scanner
@@ -419,9 +458,9 @@ public class ActiveTeamingSystem {
     }
 
     // writes the complete userDB to the user database external file
-    public void saveUserDBToFile(String filePath) throws IOException {
+    public void saveUserDBToFile() throws IOException {
         try {
-            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath));
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(userDBFilePath));
 
             for (int i =0; i< userDB.size(); i++) {
                 // current user
@@ -456,11 +495,11 @@ public class ActiveTeamingSystem {
     }
 
     // writes the complete groupDB to the groups database external file
-    public void saveGroupDBToFile(String filePath) throws IOException {
+    public void saveGroupDBToFile() throws IOException {
         // ok when we remove a group from our groupDB the user is also removed from the external group database
         // so I just have to make a copy of the database and overwrite the external file.
         try {
-            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath));
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(groupDBFilePath));
 
             for (int i =0; i< groupDB.size(); i++) {
                 // current group
@@ -489,9 +528,9 @@ public class ActiveTeamingSystem {
     }
 
     // writes the complete messageDB to the message database external file
-    public void saveMessageDBToFile(String filePath) throws IOException {
+    public void saveMessageDBToFile() throws IOException {
         try {
-            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath));
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(messagesDBFilePath));
 
             // iterate dictionary (HashMap) and deque for the applicantID
             if(!messagesDB.isEmpty()) {
@@ -530,9 +569,9 @@ public class ActiveTeamingSystem {
     }
 
     // writes the complete applicationDB to the application database external file
-    public void saveApplicationDBToFile(String filePath) throws IOException {
+    public void saveApplicationDBToFile() throws IOException {
         try {
-            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath));
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(applicationDBFilePath));
 
             // iterate dictionary (HashMap) and deque for the applicantID
             if(!applicationDB.isEmpty()) {
@@ -572,6 +611,37 @@ public class ActiveTeamingSystem {
             System.out.println("Specified File could not be found!");
         }
     }
+
+    // writes the complete ReferralDB to the Referral database external file
+    public void saveReferralDBToFile() throws IOException {
+        try {
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(referralDBFilePath));
+
+            for (int i =0; i< referralDB.size(); i++) {
+                // current group
+                Referral currentReferral = referralDB.get(i);
+
+                // get fields
+                String referrerUsername = currentReferral.getReferrerUsername();
+                String referrerStatus = currentReferral.getReferrerStatus();
+                String referrerInviteeEmail = currentReferral.getReferrerinviteeEmail();
+
+                // format group properties to string
+                String referralStr = referrerUsername + "," + referrerStatus + "," + referrerInviteeEmail;
+
+                // write the string
+                outputFile.newLine(); // select next line
+                outputFile.write(referralStr); // write word
+            }
+
+            // close file
+            outputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
 
     // adds all profiles to profile list, for home displayal
     public void addProfilesToList (){
@@ -694,7 +764,7 @@ public class ActiveTeamingSystem {
     // stores messages into messages database
 
     // stores application into application database
-    public void storeApplication(Application newApplication) {
+    public void addApplicationToDB(Application newApplication) {
 
         // generate application Id from email and DOB
         String applicationID = newApplication.getApplicantEmail() + "-" + newApplication.getApplicantDOB();
@@ -714,7 +784,7 @@ public class ActiveTeamingSystem {
     }
 
     // stores message into message database
-    public void storeMessage(Message newMessage) {
+    public void addMessageToDB(Message newMessage) {
 
         // applicationID = receiver username
         String messageId = newMessage.getReceiverUsername();
@@ -748,10 +818,10 @@ public class ActiveTeamingSystem {
 
 
     // Reads file and loads the data into projectDB
-    public void loadFileToProjectDB(String filePath) throws Exception {
+    public void loadFileToProjectDB() throws Exception {
         try {
             // file to read
-            Scanner inputFile = new Scanner(new File(filePath));
+            Scanner inputFile = new Scanner(new File(projectDBFilePath));
 
             // skip first line (column names)
             //inputFile.nextLine();
@@ -783,10 +853,46 @@ public class ActiveTeamingSystem {
         }
     }
 
-    // writes the complete projectDB to the projects database external file
-    public void saveProjectDBToFile(String filePath) throws IOException {
+    public void loadFileToReferralDB() throws Exception {
         try {
-            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath));
+            // file to read
+            Scanner inputFile = new Scanner(new File(referralDBFilePath));
+
+            // skip first line (column names)
+            //inputFile.nextLine();
+
+            // while there is another line in the file
+            while (inputFile.hasNextLine()) {
+                // get line
+                String currentLine = inputFile.nextLine();
+                //System.out.println(currentLine + "CurrentLine: " + currentLine); // for debugging
+                if (!currentLine.equals("")) {
+                    // split line
+                    String[] referralRecords = currentLine.split(",");
+                    //System.out.println(userRecords.length); // for debugging
+
+                    // get all values
+                    String referrerUsername = referralRecords[0];
+                    String referrerStatus = referralRecords[1];
+                    String referrerinviteeEmail = referralRecords[2];
+
+                    // add into projectDB
+                    addReferralToDB(new Referral(referrerUsername,referrerStatus, referrerinviteeEmail));
+                }
+            }
+            // close scanner
+            inputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+
+    // writes the complete projectDB to the projects database external file
+    public void saveProjectDBToFile() throws IOException {
+        try {
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(projectDBFilePath));
 
             for (int i =0; i< projectDB.size(); i++) {
                 // current project
@@ -823,5 +929,119 @@ public class ActiveTeamingSystem {
         }
         return groupMemberList;
     }
+
+    // add referral to db
+    public void addReferralToDB(Referral referral){
+        referralDB.add(referral);
+    }
+
+    public Referral findReferral(String givenUsername){
+        // search for referral in the database
+        for (Referral referral : referralDB) {
+            if (referral.getReferrerUsername().equals(givenUsername)) {
+                return  referral;
+            }
+        }
+        return null; // not found
+    }
+
+
+
+
+    public void addPollToDB(Poll newPoll){
+        pollDB.add(newPoll);
+    }
+
+
+    public void savePollDBToFile() throws IOException {
+        try {
+            BufferedWriter outputFile = new BufferedWriter(new FileWriter(pollDBFilePath));
+
+            for (int i =0; i< pollDB.size(); i++) {
+                // current project
+                Poll currentPoll = pollDB.get(i);
+
+                // get fields
+                String pollType = currentPoll.getType();
+                String pollMembers =  currentPoll.membersToString();
+                String meetingDate = currentPoll.getMeetingDate();
+                String meetingTime = currentPoll.getMeetingTime();
+
+                // format project properties to string
+                String pollStr = pollType + "," + pollMembers + "," + meetingDate + "," + meetingTime;
+
+                // write the string
+                outputFile.newLine(); // select next line
+                outputFile.write(pollStr); // write word
+            }
+
+            // close file
+            outputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+    public void loadFileToPollDB() throws Exception {
+        try {
+            // file to read
+            Scanner inputFile = new Scanner(new File(pollDBFilePath));
+
+            // skip first line (column names)
+            //inputFile.nextLine();
+
+            // while there is another line in the file
+            while (inputFile.hasNextLine()) {
+                // get line
+                String currentLine = inputFile.nextLine();
+                //System.out.println(currentLine + "CurrentLine: " + currentLine); // for debugging
+                if (!currentLine.equals("")) {
+                    // split line
+                    String[] pollRecords = currentLine.split(",");
+                    //System.out.println(userRecords.length); // for debugging
+
+                    String type = pollRecords[0];
+                    List<User> members = converToMembersList((pollRecords[1]));
+                    String meetingDate = pollRecords[2];
+                    String meetingTime = pollRecords[3];
+
+                    // add into pollDB
+                    addPollToDB(new Poll(type, members, meetingDate, meetingTime));
+                }
+            }
+            // close scanner
+            inputFile.close();
+            // catch exceptions
+        } catch (FileNotFoundException e) {
+            System.out.println("Specified File could not be found!");
+        }
+    }
+
+    // get poll for specific logged user
+    public List<Poll> getPollDB(String loggedUsername){
+        List<Poll> tmpPollDB = new ArrayList<>();
+
+        // iterate all polls
+        for (Poll poll : pollDB) {
+            // iterate all members in the current poll
+            for (User user : poll.getMembers()) {
+                if (loggedUsername.equals(user.getUserName())){
+                    tmpPollDB.add(poll);
+                }
+            }
+        }
+        return tmpPollDB;
+    }
+
+    public void removePoll(Poll poll){
+        for (Poll currentPoll : pollDB) {
+            if(currentPoll.getMeetingTime().equals(poll.getMeetingTime())){
+                pollDB.remove(currentPoll);
+            }
+        }
+    }
+
+
 
 } // end ActiveTeamingSystem

@@ -3,10 +3,12 @@ package Controller;
 import Model.ActiveTeamingSystem;
 import Model.Message;
 import Model.TopProfile;
+import Model.User;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 
@@ -23,6 +25,7 @@ public class HomeAnchorPaneController {
     @FXML private JFXButton buttonBlacklist;
     @FXML private JFXButton buttonCollaborationRequest;
     @FXML private JFXButton buttonSendMessage;
+    @FXML private JFXButton buttonCompliment;
 
     // list views
     @FXML private JFXListView listViewProfiles;
@@ -40,12 +43,31 @@ public class HomeAnchorPaneController {
 
         // also, initialize required fields
         populateProfileListsView();
+
     }
 
     // handle button action of Browse View
     @FXML private void handleButtonAction(ActionEvent event) throws IOException {
         if (event.getSource() == buttonBlacklist) {
-            // .....
+            TopProfile profile = (TopProfile) listViewProfiles.getSelectionModel().getSelectedItem();
+            User user = systemModel.findUser(profile.getUserName());
+
+            Alert alertDialog = new Alert(Alert.AlertType.INFORMATION);
+            alertDialog.setTitle("System Alert");
+            alertDialog.setHeaderText("Selected user will be removed from the database and will be blacklisted.");
+            alertDialog.setContentText("Click Ok to continue");
+            alertDialog.showAndWait();
+
+            // add user to black list
+            systemModel.getBlackList().add(user);
+            // update db
+            systemModel.getUserBD().remove(user);
+            // backup database
+            systemModel.saveUserDBToFile();
+
+            // refresh
+            populateProfileListsView();
+
         } else if (event.getSource() == buttonSendMessage) {
             // get selected user
             TopProfile profile = (TopProfile) listViewProfiles.getSelectionModel().getSelectedItem();
@@ -58,9 +80,9 @@ public class HomeAnchorPaneController {
             // Traditional way to get the response value.
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()){
-                systemModel.storeMessage(new Message("Normal","May 2020", systemModel.getLoggedUser().getUserName(),profile.getUserName(),result.get()));
+                systemModel.addMessageToDB(new Message("Normal","May 2020", systemModel.getLoggedUser().getUserName(),profile.getUserName(),result.get()));
                 // backup messageDB
-                systemModel.saveMessageDBToFile("src/Database/Messages.txt");
+                systemModel.saveMessageDBToFile();
             }
         } else if (event.getSource() == buttonCollaborationRequest) {
             // get selected user
@@ -74,10 +96,44 @@ public class HomeAnchorPaneController {
             // Traditional way to get the response value.
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()){
-                systemModel.storeMessage(new Message("Collab","May 2020", systemModel.getLoggedUser().getUserName(),profile.getUserName(),result.get()));
+                systemModel.addMessageToDB(new Message("Collab","May 2020", systemModel.getLoggedUser().getUserName(),profile.getUserName(),result.get()));
                 // backup messageDB
-                systemModel.saveMessageDBToFile("src/Database/Messages.txt");
+                systemModel.saveMessageDBToFile();
             }
+        } else if (event.getSource() == buttonCompliment) {
+            // get selected user
+            TopProfile profile = (TopProfile) listViewProfiles.getSelectionModel().getSelectedItem();
+
+            User user = systemModel.findUser(profile.getUserName());
+//            int complimentValue;
+//
+//            // decide compliment score
+//            if(systemModel.getLoggedUser().getStatus().equals("OU")) {
+//                complimentValue = 10;
+//            } else if (systemModel.getLoggedUser().getStatus().equals("VIP")){
+//                complimentValue = 20;
+//            } else {
+//                complimentValue = 20;
+//            }
+//
+//            // update reputation of selected user.
+//            user.setRepScore(user.getRepScore()+complimentValue);
+//
+//            // backup database
+//            systemModel.saveUserDBToFile();
+//
+//            Alert alertDialog = new Alert(Alert.AlertType.INFORMATION);
+//            // ALERT
+//            alertDialog.setHeaderText("System Alert!");
+//            alertDialog.setContentText("The new score of completed user has been updated! the new score is" + user.getRepScore());
+//            alertDialog.showAndWait();
+
+
+            // ALERT
+            Alert alertDialog = new Alert(Alert.AlertType.INFORMATION);
+            alertDialog.setHeaderText("System Alert!");
+            alertDialog.setContentText(user.getUserName() + " has been complimented! when user is complimented 3 times the SU can increase his reputation");
+            alertDialog.showAndWait();
         }
     }
 

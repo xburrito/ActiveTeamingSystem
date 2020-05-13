@@ -81,7 +81,7 @@ public class SettingsAnchorPaneController {
             }
         }
         // save changes to external database
-        systemModel.saveUserDBToFile("src/Database/User.csv");
+        systemModel.saveUserDBToFile();
     }
 
     // this methods populates settings fields. it gets triggered when the user clicks the setting tab

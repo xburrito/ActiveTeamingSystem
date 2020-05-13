@@ -71,16 +71,11 @@ public class BrowseAnchorPaneController {
             // Traditional way to get the response value.
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()){
-                systemModel.storeMessage(new Message("Report","May 2020", "Visitor","JackAdminSU",result.get()));
+                systemModel.addMessageToDB(new Message("Report","May 2020", "Visitor","JackAdminSU",result.get()));
                 // backup messageDB
-                systemModel.saveMessageDBToFile("src/Database/Messages.txt");
+                systemModel.saveMessageDBToFile();
             }
         }
-    }
-
-    // in case we want to trigger a "manual" initialization of fields
-    public void triggerBrowserInitialization() throws Exception {
-        //
     }
 
 } // end BrowseAnchorPaneController

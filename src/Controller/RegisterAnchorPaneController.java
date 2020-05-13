@@ -7,7 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 public class RegisterAnchorPaneController {
     // main Controller
@@ -64,7 +65,7 @@ public class RegisterAnchorPaneController {
 
     // handle button action on Browse View
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleButtonAction(ActionEvent event) throws IOException {
         if (event.getSource() == buttonSubmitForm) {
 
             if (radioGroup.getSelectedToggle() != null && radioButtonNO == radioGroup.getSelectedToggle()) {
@@ -76,22 +77,19 @@ public class RegisterAnchorPaneController {
             else if (!fieldUsername.getText().equals("") && !fieldEmail.getText().equals("") && !fieldPassword.getText().equals("") && datePickerDOB.getValue() != null &&
                     !fieldPassConfirm.getText().equals("") && !fieldReference.getText().equals("")) {
 
-                // get password
+                // get application fields
+                String submissionDate = "May 7, 2020"; // later get current date from system
+                String applicantUsername = fieldUsername.getText();
+                String applicantName = "Name: "+applicantUsername; // since we forgot the name field on the registration page.
+                String applicantEmail = fieldEmail.getText();
+                String applicantDOB = datePickerDOB.getValue().toString();
                 String applicantPassword = fieldPassword.getText();
                 String passConfirm = fieldPassConfirm.getText();
-                // check that passwords match
-                if (verifyPassword(applicantPassword, passConfirm)) {
-                    // get application fields
-                    String submissionDate = "May 7, 2020"; // later get current date from system
-                    String applicantUsername = fieldUsername.getText();
-                    String applicantName = "Name: "+applicantUsername; // since we forgot the name field on the registration page.
-                    String applicantEmail = fieldEmail.getText();
-                    String applicantDOB = datePickerDOB.getValue().toString();
-                    String applicantReferrer = fieldReference.getText();
-                    String applicantReferrerStatus = radioGroup.getSelectedToggle().toString();
-                    // String applicantReferrerStatus = radioGroup.getSelectedToggle().getUserData().toString();
+                String applicantReferrer = fieldReference.getText();
+                String applicantReferrerStatus = radioGroup.getSelectedToggle().toString();
+                // String applicantReferrerStatus = radioGroup.getSelectedToggle().getUserData().toString();
 
-                    // for debuggin only: print all entered fields
+                // for debuggin only: print all entered fields
 //                    System.out.println(applicantUsername);
 //                    System.out.println(applicantEmail);
 //                    System.out.println(applicantDOB);
@@ -100,22 +98,47 @@ public class RegisterAnchorPaneController {
 //                    System.out.println(applicantReferrer);
 //                    System.out.println(applicantReferrerStatus);
 
-                    // create application
-                    Application newApplication = new Application(submissionDate,applicantDOB,applicantPassword,applicantName,applicantUsername,applicantEmail,applicantReferrer,applicantReferrerStatus);
-                    // send/store application into applicationDB (SU application)
-                    systemModel.storeApplication(newApplication);
 
+                // verify username
+                if(systemModel.findUser(fieldUsername.getText())!=null) {
                     // ALERT
-                    alertDialog.setHeaderText("System Alert!");
-                    alertDialog.setContentText("Application Sent, if your application gets approved by the SU, you will be able to sign in!");
+                    alertDialog.setHeaderText("Username not available!");
+                    alertDialog.setContentText("Please choose a different username!");
                     alertDialog.showAndWait();
+                } else { // verify password
+                    // check that passwords match
+                    if (verifyPassword(applicantPassword, passConfirm)) {
 
-                } else {
-                    // ALERT
-                    alertDialog.setHeaderText("Entered Passwords do not Match!");
-                    alertDialog.setContentText("Your password should match!");
-                    alertDialog.showAndWait();
+                        // check that referrer if found in the database and that it's directed to him.
+                        if(systemModel.findReferral(applicantReferrer)!=null && systemModel.findReferral(applicantReferrer).getReferrerinviteeEmail().equals(applicantEmail)) {
+                            // create application
+                            Application newApplication = new Application(submissionDate,applicantDOB,applicantPassword,applicantName,applicantUsername,applicantEmail,applicantReferrer,applicantReferrerStatus);
+                            // send/store application into applicationDB (SU application)
+                            systemModel.addApplicationToDB(newApplication);
+                            // backup application
+                            systemModel.saveApplicationDBToFile();
+
+                            // ALERT
+                            alertDialog.setHeaderText("System Alert!");
+                            alertDialog.setContentText("Application Sent, if your application gets approved by the SU, you will be able to sign in!");
+                            alertDialog.showAndWait();
+                        } else {
+                            // ALERT
+                            alertDialog.setHeaderText("Referral not valid!");
+                            alertDialog.setContentText("you need a valid referral!");
+                            alertDialog.showAndWait();
+                        }
+
+
+                    } else {
+                        // ALERT
+                        alertDialog.setHeaderText("Entered Passwords do not Match!");
+                        alertDialog.setContentText("Your password should match!");
+                        alertDialog.showAndWait();
+                    }
+
                 }
+
 
             } else {
                 // ALERT

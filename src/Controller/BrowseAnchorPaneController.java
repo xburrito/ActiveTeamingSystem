@@ -27,6 +27,7 @@ public class BrowseAnchorPaneController {
 
     // list views
     @FXML private JFXListView listViewTopProfiles;
+    @FXML private JFXListView listViewGroups;
 
     //@FXML private Button buttonLoadMore; create later
 
@@ -42,8 +43,11 @@ public class BrowseAnchorPaneController {
         System.out.println("Browse Controller contains Main Model? " + (this.systemModel!=null));
 
         // also, initialize required fields
+        buttonLoadMoreTeams.setVisible(false);
         systemModel.addTopProfilesToList();
         listViewTopProfiles.getItems().addAll(systemModel.getTopProfilesList());
+        listViewGroups.getItems().clear();
+        listViewGroups.getItems().addAll(systemModel.getGroupBD());
 
     }
 

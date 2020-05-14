@@ -53,7 +53,7 @@ Based on the user's status, they will have access to a variety of activities ava
 Some activities are:
 
 - **Browse** - View the top profiles as well as top projects. There is an option on the right side to expand for more results.
-![picture](img/Screen Shot 2020-05-13 at 11.24.50 PM.png)
+![picture](https://github.com/ZGabriell/ActiveTeamingSystem/blob/master/screenshots/Screen%20Shot%202020-05-13%20at%2011.24.50%20PM.png?raw=true)
 - **Register** - Provides a form asking basic information: Name, Email, D.O.B. and referral. Make sure registering email has been referred first before creating an account with that email.
 
 - **log in** - To gain login access, upon registering, have the SU approve of the application in order to be able to log in. The SU should receive a message to stamp an approval on the applicant's request.

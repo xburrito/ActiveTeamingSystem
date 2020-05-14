@@ -40,11 +40,7 @@ public class Project {
     // to string for displayal
     @Override
     public String toString() {
-        return "Project{" +
-                "projectName='" + projectName + '\'' +
-                ", projectGroup='" + projectGroup + '\'' +
-                ", projectScore=" + projectScore +
-                '}';
+        return projectName + ", " + projectGroup + ", " + projectScore;
     }
 
 

@@ -44,7 +44,7 @@ public class TopProfile {
 
     // utility methods
     public String toString() {
-        String str = "\n" + "[" + username + repScore + ", " + status + "]";
+        String str = username + ", " + repScore + ", " + status;
         return str;
     }
 }// end TopProfile

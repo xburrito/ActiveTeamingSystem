@@ -25,5 +25,11 @@
       <JFXListView fx:id="listViewMeetings" layoutX="113.0" layoutY="134.0" prefHeight="291.0" prefWidth="648.0" />
       <JFXButton fx:id="buttonAccept" layoutX="769.0" layoutY="185.0" onAction="#handleButtonAction" text="Accept" />
       <JFXButton fx:id="buttonReject" layoutX="770.0" layoutY="266.0" onAction="#handleButtonAction" text="Reject" />
+      <Label layoutX="305.0" layoutY="82.0" prefHeight="17.0" prefWidth="265.0" text="Requested Meetings">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="128.0" layoutY="117.0" prefHeight="17.0" prefWidth="309.0" text="Type, Group Members, Meeting Date, Meeting Time" />
    </children>
 </AnchorPane>

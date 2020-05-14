@@ -1026,6 +1026,4 @@ public class ActiveTeamingSystem {
         }
     }
 
-
-
 } // end ActiveTeamingSystem

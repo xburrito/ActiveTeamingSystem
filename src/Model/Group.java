@@ -93,7 +93,7 @@ public class Group {
 
   // utility methods, Note: they are automatically used for GUI Lists Views
   public String toString() {
-    return "\n" + "[" + group_Name + ", " + group_Leader + ", " + membersToString() + "]";
+    return group_Name + ", " + group_Leader + ", [" + membersToString()+"]";
   }
 
   // returns list of members in form of a string

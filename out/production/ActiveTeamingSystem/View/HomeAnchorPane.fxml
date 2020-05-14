@@ -23,10 +23,15 @@
          </children>
       </VBox>
       <JFXButton fx:id="buttonBlackList" layoutX="796.0" layoutY="325.0" onAction="#handleButtonAction" text="Blacklist" />
-      <Label layoutX="145.0" layoutY="148.0" text="Profiles" />
+      <Label layoutX="145.0" layoutY="148.0" text="Username, Reputation Score, Status" />
       <JFXListView fx:id="listViewProfiles" layoutX="145.0" layoutY="166.0" prefHeight="368.0" prefWidth="643.0" />
       <JFXButton fx:id="buttonSendMessage" layoutX="202.0" layoutY="551.0" onAction="#handleButtonAction" text="Send Message" />
       <JFXButton fx:id="buttonCollaborationRequest" layoutX="385.0" layoutY="551.0" onAction="#handleButtonAction" text="Collaboration Request" />
       <JFXButton fx:id="buttonCompliment" layoutX="614.0" layoutY="551.0" onAction="#handleButtonAction" text="Compliment" />
+      <Label layoutX="310.0" layoutY="88.0" prefHeight="34.0" prefWidth="258.0" text="Profiles registered in the system">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

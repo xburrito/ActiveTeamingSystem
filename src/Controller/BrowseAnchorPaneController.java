@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextInputDialog;
+import org.joda.time.LocalDate;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -71,7 +72,7 @@ public class BrowseAnchorPaneController {
             // Traditional way to get the response value.
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()){
-                systemModel.addMessageToDB(new Message("Report","May 2020", "Visitor","JackAdminSU",result.get()));
+                systemModel.addMessageToDB(new Message("Report", LocalDate.now().toString("MM/dd/yyyy"), "Visitor","JackAdminSU",result.get()));
                 // backup messageDB
                 systemModel.saveMessageDBToFile();
             }

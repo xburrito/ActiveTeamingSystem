@@ -50,12 +50,7 @@ public class Poll {
 
     @Override
     public String toString() {
-        return "Poll{" +
-                "type='" + type + '\'' +
-                ", members=" + members +
-                ", meetingDate='" + meetingDate + '\'' +
-                ", meetingTime='" + meetingTime + '\'' +
-                '}';
+        return type + ", " + membersToString() + ", " + meetingDate + ", "+ meetingTime;
     }
 
     // returns list of members in form of a string

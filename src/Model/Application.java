@@ -91,7 +91,7 @@ public class Application {
 
     // utility methods
     public String toString() {
-        return "\n" + "[" + submissionDate + ", " + applicantName + ", " + applicantEmail + ", " + applicantDOB + ", " + applicantUsername + ", " + applicantPassword + ", " + applicantReferrer + ", " + applicantReferrerStatus + "]";
+        return submissionDate + ", " + applicantName + ", " + applicantEmail + ", " + applicantDOB + ", " + applicantUsername + ", " + applicantPassword + ", " + applicantReferrer + ", " + applicantReferrerStatus;
     }
 
 

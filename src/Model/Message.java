@@ -62,12 +62,6 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" +
-                "messageType='" + messageType + '\'' +
-                ", messageDate='" + messageDate + '\'' +
-                ", senderUsername='" + senderUsername + '\'' +
-                ", receiverUsername=" + receiverUsername +
-                ", Note='" + Note + '\'' +
-                '}';
+        return messageType + ", " + messageDate + ", " + senderUsername + ", " + Note;
     }
 } // Message

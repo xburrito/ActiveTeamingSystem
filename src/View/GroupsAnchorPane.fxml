@@ -25,5 +25,11 @@
       <JFXListView fx:id="listViewGroups" layoutX="144.0" layoutY="188.0" prefHeight="368.0" prefWidth="643.0" />
       <JFXButton fx:id="buttonDelete" layoutX="794.0" layoutY="350.0" onAction="#handleButtonAction" text="Delete" />
       <JFXButton fx:id="buttonMeetingSchedule" layoutX="403.0" layoutY="566.0" onAction="#handleButtonAction" text="Schedule a Meeting" />
+      <Label layoutX="314.0" layoutY="88.0" prefHeight="23.0" prefWidth="205.0" text="Groups in the System.">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="144.0" layoutY="171.0" prefHeight="17.0" prefWidth="254.0" text="Group Name, Group Leader, Group Members" />
    </children>
 </AnchorPane>

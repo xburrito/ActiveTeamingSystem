@@ -22,5 +22,11 @@
          </children>
       </VBox>
       <JFXListView fx:id="listViewProjects" layoutX="154.0" layoutY="198.0" prefHeight="368.0" prefWidth="643.0" />
+      <Label layoutX="333.0" layoutY="113.0" text="Projects in the System">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="154.0" layoutY="181.0" prefHeight="17.0" prefWidth="213.0" text="Project Name, Group, Project Score" />
    </children>
 </AnchorPane>

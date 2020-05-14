@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
+import org.joda.time.LocalDate;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -59,7 +60,7 @@ public class MessagesAnchorPaneController {
             if (result.isPresent()){
                 // get group fields
                 String groupName = result.get().replaceAll(",.*","");
-                String groupId = String.valueOf(Math.random() * ( 99999 - 10000 ));
+                String groupId = String.valueOf((int) (Math.random() * 81 + 20));
                 String groupLeader = invitation.getReceiverUsername();
 
                 List<User> groupMembers = new LinkedList<User>();
@@ -73,7 +74,7 @@ public class MessagesAnchorPaneController {
 
                 // get project fields
                 String projectName = result.get().replaceAll(".*,","");
-                String projectGroup = groupId;
+                String projectGroup = groupName;
                 int projectScore = 0;
 
                 // create Project
@@ -106,7 +107,7 @@ public class MessagesAnchorPaneController {
 
             // potential new USER fields
             String DOB = application.getApplicantDOB();
-            String dateJoined = "May 13 2020";
+            String dateJoined = LocalDate.now().toString("MM/dd/yyyy");
             int userID = (int) (Math.random() * 81 + 20);
             String password = application.getApplicantPassword();
             String email = application.getApplicantEmail();

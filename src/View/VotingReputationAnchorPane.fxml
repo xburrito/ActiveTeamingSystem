@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="votingReputationAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #BFF0FF;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VotingReputationAnchorPaneController">
+<AnchorPane fx:id="votingReputationAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #BFF0FF;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VotingReputationAnchorPaneController">
    <children>
       <VBox fx:id="content_area" prefHeight="67.0" prefWidth="1000.0" style="-fx-background-color: #00C5FF#00C5FF;" AnchorPane.bottomAnchor="633.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -22,8 +22,14 @@
             </Label>
          </children>
       </VBox>
-      <JFXListView fx:id="listViewMeetings" layoutX="150.0" layoutY="135.0" prefHeight="291.0" prefWidth="588.0" />
-      <JFXButton fx:id="buttonAccept" layoutX="765.0" layoutY="195.0" onAction="#handleButtonAction" prefHeight="44.0" prefWidth="81.0" styleClass="acceptButton" text="Accept" />
-      <JFXButton fx:id="buttonReject" layoutX="765.0" layoutY="306.0" onAction="#handleButtonAction" prefHeight="44.0" prefWidth="81.0" styleClass="rejectButton" text="Reject" />
+      <JFXListView fx:id="listViewMeetings" layoutX="113.0" layoutY="134.0" prefHeight="291.0" prefWidth="648.0" />
+      <JFXButton fx:id="buttonAccept" layoutX="769.0" layoutY="185.0" onAction="#handleButtonAction" text="Accept" />
+      <JFXButton fx:id="buttonReject" layoutX="770.0" layoutY="266.0" onAction="#handleButtonAction" text="Reject" />
+      <Label layoutX="305.0" layoutY="82.0" prefHeight="17.0" prefWidth="265.0" text="Requested Meetings">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="128.0" layoutY="117.0" prefHeight="17.0" prefWidth="309.0" text="Type, Group Members, Meeting Date, Meeting Time" />
    </children>
 </AnchorPane>

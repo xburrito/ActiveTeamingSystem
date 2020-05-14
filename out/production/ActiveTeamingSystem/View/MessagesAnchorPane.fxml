@@ -27,5 +27,11 @@
       <JFXButton fx:id="buttonRejectApp" layoutX="454.0" layoutY="523.0" onAction="#handleButtonAction" style="-fx-background-color: #d9455f;" text="Reject Application" />
       <JFXButton fx:id="buttonAcceptInvitation" layoutX="791.0" layoutY="228.0" onAction="#handleButtonAction" style="-fx-background-color: #00a1ab;" text="Accept" />
       <JFXButton fx:id="buttonRejectInvitation" layoutX="793.0" layoutY="353.0" onAction="#handleButtonAction" style="-fx-background-color: #d9455f;" text="Reject" />
+      <Label layoutX="146.0" layoutY="87.0" text="Incoming Messages">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="139.0" layoutY="131.0" prefHeight="17.0" prefWidth="232.0" text="Type,    Date,    Sender,    Message" />
    </children>
 </AnchorPane>

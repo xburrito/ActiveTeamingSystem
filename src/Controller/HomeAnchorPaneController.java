@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
+import org.joda.time.LocalDate;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -80,7 +81,7 @@ public class HomeAnchorPaneController {
             // Traditional way to get the response value.
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()){
-                systemModel.addMessageToDB(new Message("Normal","May 2020", systemModel.getLoggedUser().getUserName(),profile.getUserName(),result.get()));
+                systemModel.addMessageToDB(new Message("Regular Message", LocalDate.now().toString("MM/dd/yyyy"), systemModel.getLoggedUser().getUserName(),profile.getUserName(),result.get()));
                 // backup messageDB
                 systemModel.saveMessageDBToFile();
             }
@@ -96,7 +97,7 @@ public class HomeAnchorPaneController {
             // Traditional way to get the response value.
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()){
-                systemModel.addMessageToDB(new Message("Collab","May 2020", systemModel.getLoggedUser().getUserName(),profile.getUserName(),result.get()));
+                systemModel.addMessageToDB(new Message("Collaboration Request",LocalDate.now().toString("MM/dd/yyyy"), systemModel.getLoggedUser().getUserName(),profile.getUserName(),result.get()));
                 // backup messageDB
                 systemModel.saveMessageDBToFile();
             }

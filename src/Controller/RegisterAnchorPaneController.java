@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleGroup;
+import org.joda.time.LocalDate;
 
 import java.io.IOException;
 
@@ -78,7 +79,7 @@ public class RegisterAnchorPaneController {
                     !fieldPassConfirm.getText().equals("") && !fieldReference.getText().equals("")) {
 
                 // get application fields
-                String submissionDate = "May 7, 2020"; // later get current date from system
+                String submissionDate = LocalDate.now().toString("MM/dd/yyyy"); // later get current date from system
                 String applicantUsername = fieldUsername.getText();
                 String applicantName = "Name: "+applicantUsername; // since we forgot the name field on the registration page.
                 String applicantEmail = fieldEmail.getText();

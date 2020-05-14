@@ -22,3 +22,25 @@
     -fx-border-style: solid;
     -fx-border-radius: 3px;
 }
+
+.acceptButton{
+  -fx-text-fill: #FFFFFF;
+  -fx-font-weight: bold;
+  -fx-background-color: #50CA00;
+  -fx-background-radius: 3px;
+  -fx-border-color: #50CA00;
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+  -fx-border-radius: 3px;
+}
+
+.rejectButton{
+  -fx-text-fill: #FFFFFF;
+  -fx-font-weight: bold;
+  -fx-background-color: #FF0000;
+  -fx-background-radius: 3px;
+  -fx-border-color: #FF0000;
+  -fx-border-width: 1px;
+  -fx-border-style: solid;
+  -fx-border-radius: 3px;
+}

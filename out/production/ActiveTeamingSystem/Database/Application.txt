@@ -1,0 +1,7 @@
+
+May 7, 2020,Name: SugarLane,suqullune-7749@yopmail.com,1959-11-18,SugarLane,roottest,johnsmith,JFXRadioButton[id=radioButtonOU, styleClass=radio-button jfx-radio-button]'Ordinary User'
+May 7, 2020,Name: CandyMan,fejaddurrozu-5228@yopmail.com,2001-05-16,CandyMan,testing,cityyet,JFXRadioButton[id=radioButtonOU, styleClass=radio-button jfx-radio-button]'Ordinary User'
+May 7, 2020,Name: MrEvil,evikenyxe-1626@yopmail.com,1991-10-10,MrEvil,roottest,scoringironclad,JFXRadioButton[id=radioButtonOU, styleClass=radio-button jfx-radio-button]'Ordinary User'
+May 7, 2020,Name: XuYin,xuhemmumo-0576@yopmail.com,2000-09-11,XuYin,testing,anodisinggoatskin,JFXRadioButton[id=radioButtonOU, styleClass=radio-button jfx-radio-button]'Ordinary User'
+May 7, 2020,Name: SugarLane,annevossib-0181@yopmail.com,1969-11-27,SugarLane,roottest,volumniagrip,JFXRadioButton[id=radioButtonVIP, styleClass=radio-button jfx-radio-button]'VIP User'
+May 7, 2020,Name: RossBoss,yrossetyss-3178@yopmail.com,1969-11-27,RossBoss,rossboss,ringwormstrongman,JFXRadioButton[id=radioButtonVIP, styleClass=radio-button jfx-radio-button]'VIP User'

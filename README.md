@@ -10,27 +10,6 @@ Team Q Participants:
 - Ide
 
 -----
-**Softwaire Usage**
-
-Based on the user's statut, s/he can have access to a variety of activities available on the software.
-Some activities are:
-
-Browse
-Register
-
-log in
-
-Create group
-
-Create poll
-
-Vote
-
-Manage group
-
-Increase reputation
-
------
 
 1. [Phase 1 - Team Spec Report](https://github.com/ZGabriell/ActiveTeamingSystem/blob/master/documentation/Team%20Q%20-%20Phase%20II.pdf) {Pages: 1 - 17}
 
@@ -41,7 +20,7 @@ Increase reputation
 4. [Phase 4 - Debugging] {**IN PROGRESS**}
 
 ------
-##### Prepare and Run:
+### Prepare and Run:
 1. Clone this git and go to directory:
 
 ``
@@ -63,3 +42,30 @@ $ git clone https://github.com/ZGabriell/ActiveTeamingSystem && cd ActiveTeaming
 7. At the home screen, OU and VIP should be able to view other user profiles, messages, the groups they are actively participating in, projects, meeting poll pages as well as the settings option to change their username and/or password. At the home screen, users should be able to interact with other users through messaging, sending collaboration requests as well as compliment to raise the receiving party's reputation score. 
 
 8. Clicking the logOut button on the left column will prompt a sign up pop-up. Upon confirming, you will be redirected to the browse page where you can view the top profiles as well as the top teams. Top left corner **Go Back** will redirect you to the login page. 
+
+-----
+
+### Software Usage
+
+Based on the user's status, they will have access to a variety of activities available on the software.
+Some activities are:
+
+**Browse** - View the top profiles as well as top projects. There is an option on the right side to expand for more results.
+
+**Register** - Provides a form asking basic information: Name, Email, D.O.B. and referral. Make sure registering email has been referred first before creating an account with that email.
+
+**log in** - To gain login access, upon registering, have the SU approve of the application in order to be able to log in. The SU should receive a message to stamp an approval on the applicant's request.
+
+**Home Menu** - You should be able to send a message, send a collaboration request, as well as compliment over the highlighted user of choice. 
+
+**Messages** - You should be able to view messages in your inbox. 
+
+**Groups** - You can highlight a group and schedule a meeting (Currently lacks functionality)
+
+**Projects** - Will be properly displayed. (Lacks functionality to keep specific ones private)
+
+**Create poll** - If meeting polls are present, you can accept or reject time suggested. 
+
+**Vote** - (Currently lacks functionality)
+
+**Increase reputation** - (Currently lacks functionality)

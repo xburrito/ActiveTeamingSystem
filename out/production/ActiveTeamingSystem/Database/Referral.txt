@@ -1,6 +1,5 @@
 JackVIP,VIP,DAN@gmail.com
-JackVIP,VIP,DAN1@gmail.com
-JackVIP,VIP,DAN3@gmail.com
+JackSU,VIP,DAN3@gmail.com
 JackOU,OU,johnsmith@gmail.com
 anodisinggoatskin,OU,xuhemmumo-0576@yopmail.com
 cityyet,OU,fejaddurrozu-5228@yopmail.com

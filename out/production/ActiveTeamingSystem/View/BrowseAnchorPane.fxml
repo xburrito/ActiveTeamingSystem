@@ -15,11 +15,11 @@
       </Label>
       <JFXButton fx:id="buttonGoBack" layoutX="26.0" layoutY="22.0" onAction="#handleButtonAction" text="Go Back" />
       <JFXListView fx:id="listViewTopProfiles" layoutX="26.0" layoutY="104.0" prefHeight="245.0" prefWidth="697.0" />
-      <JFXListView fx:id="listViewTopProfiles1" layoutX="26.0" layoutY="387.0" prefHeight="245.0" prefWidth="697.0" />
+      <JFXListView fx:id="listViewGroups" layoutX="26.0" layoutY="387.0" prefHeight="245.0" prefWidth="697.0" />
       <JFXButton fx:id="buttonLoadMoreProfiles" layoutX="743.0" layoutY="211.0" onAction="#handleButtonAction" text="Load More Profiles" />
       <JFXButton fx:id="buttonLoadMoreTeams" layoutX="751.0" layoutY="489.0" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="120.0" text="Load More Teams" />
-      <Label layoutX="26.0" layoutY="87.0" text="Top Profiles:" />
-      <Label layoutX="28.0" layoutY="370.0" text="Top Teams:" />
+      <Label layoutX="26.0" layoutY="87.0" text="Top Profiles: Username, Score, Status" />
+      <Label layoutX="28.0" layoutY="370.0" text="Top Teams: Group Name, Group Leader, Group Members" />
       <JFXButton fx:id="buttonReportUser" layoutX="822.0" layoutY="22.0" onAction="#handleButtonAction" text="Report User" />
    </children>
 </AnchorPane>

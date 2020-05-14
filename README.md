@@ -54,9 +54,9 @@ $ git clone https://github.com/ZGabriell/ActiveTeamingSystem && cd ActiveTeaming
 
 4. Fill out registration form. Make sure reference is valid and properly paired with their status and hit register now.
 
-5. NOTE: in order to register, the email used to register with must be a referral email. To virtually create a referral email, go to: ./src/Database/Referral.txt and append on the next line the desired [Referrer's username (Found in User.csv), Referrer's rank, Your desired registration e-mail]
+5. NOTE: in order to register, the email used to register with must be a referral email. To virtually create a referral email, go to: ./src/Database/Referral.txt and append on the next line the desired **[Referrer's username (Found in User.csv), Referrer's rank, Your desired registration e-mail]**
 
-6. Once registration form has been successfully processed, a pop-up notifies you that the SU will review your application and either approve or reject it. If approved, your application will be appended to the User.csv database and you will be able to log in as a OU or VIP depending on initial given reputation score.
+6. Once registration form has been successfully processed, a pop-up notifies you that the SU will review your application and either approve or reject it. **If approved, your application will be appended to the User.csv database and you will be able to log in as a OU or VIP depending on initial given reputation score.**
 
 (**To approve of application, go and login to - User: adminOU@gmail.com / Password: root, enter messages, and click approve application. Applicant should now be able to login with registered credentials.**)
 

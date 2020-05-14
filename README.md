@@ -17,7 +17,9 @@ Team Q Participants:
 
 3. [Phase 3 - Demo] {Complete}
 
-4. [Phase 4 - Debugging] {**IN PROGRESS**}
+4. [Phase 4 - Debugging] {Complete}
+
+5. [Phase 5 - Final Report] {Complete}
 
 ------
 ### Prepare and Run:

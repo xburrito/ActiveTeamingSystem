@@ -14,6 +14,10 @@ public class ActiveTeamingSystem {
     private List<TopProfile> profileList;
     // ArrayList, holds projects for displayal
     private List<Project> projectDB;
+    // hashmap to hold the messages and notification of each user
+    private HashMap<String, Deque<Message>> messagesDB;
+    // hashmap to hold the applications of visitors
+    private HashMap<String, Deque<Application>> applicationDB;
     // Logged in User
     private User loggedUser;
     // group of Logged in user
@@ -89,12 +93,6 @@ public class ActiveTeamingSystem {
     public void setProjectList(List<Project> projectDB) {
         this.projectDB = projectDB;
     }
-
-    // hashmap to hold the messages and notification of each user
-    private HashMap<String, Deque<Message>> messagesDB;
-
-    // hashmap to hold the applications of visitors
-    private HashMap<String, Deque<Application>> applicationDB;
 
     public List<User> getUserDB() {
         return userDB;
@@ -187,25 +185,6 @@ public class ActiveTeamingSystem {
     }
 
 
-//    // find and get messages from passed user
-//    public double getMessagesList(int userID) {
-//
-//        // iterate dictionary (HashMap) and deque for the userID
-//        if(messagesDB.containsKey(userID)) {
-//            // iterate coin deque
-//            Iterator<Message> iterator = messagesDB.get(message).iterator();
-//            while (iterator.hasNext()) {
-//                Message currentMessage = (Message) iterator.next();
-//                if (currentMessage.getTradeId() == tradeId) {
-//                    return currentMessage.getQunatity().doubleValue();
-//                }
-//            }
-//        }
-//        //System.out.println("no holdings found for " + coin);
-//        return 0;
-//    }
-
-
     // add user into userDB, (it adds users sorted from lowest to highest reputations score)
     public void addUser(String dayOfBirth, String dateJoined, int userID, String password, String email, String username, String lastName, String firstName, int repScore, String status) {
         // new repScore
@@ -246,11 +225,11 @@ public class ActiveTeamingSystem {
     }
 
     // remove a user from the userDB
-    public User removeUser(int userID) {
+    public User removeUser(String username) {
         User removed = null;
 
         for (int i=0; i<userDB.size();i++) {
-            if (userDB.get(i).getUserID() == userID) {
+            if (userDB.get(i).getUserName()== username) {
                 removed = userDB.remove(i);
             }
         }
@@ -267,6 +246,39 @@ public class ActiveTeamingSystem {
             }
         }
         return removed;
+    }
+
+    // remove a message
+    public void removeMessage(String username, String note) {
+
+        // iterate dictionary (HashMap) and deque for the userID
+        if(messagesDB.containsKey(username)) {
+            // iterate message deque
+            Iterator<Message> iterator = messagesDB.get(username).iterator();
+            while (iterator.hasNext()) {
+                Message currentMessage = (Message) iterator.next();
+                if (currentMessage.getNote().equals(note)){
+                    messagesDB.get(username).remove(currentMessage);
+                }
+            }
+        }
+    }
+
+    // remove a application
+    public void removeApplication(String applicatEmail,String DOB) {
+        String appID = applicatEmail + "-" + DOB;
+
+        // iterate dictionary (HashMap) and deque for the userID
+        if(applicationDB.containsKey(appID)) {
+            // iterate message deque
+            Iterator<Application> iterator = applicationDB.get(appID).iterator();
+            while (iterator.hasNext()) {
+                Application currentApplication = (Application) iterator.next();
+                if (currentApplication.getApplicantEmail().equals(applicatEmail)){
+                    applicationDB.get(appID).remove(currentApplication);
+                }
+            }
+        }
     }
 
 
@@ -423,34 +435,6 @@ public class ActiveTeamingSystem {
             }
             // close scanner
             inputFile.close();
-            // catch exceptions
-        } catch (FileNotFoundException e) {
-            System.out.println("Specified File could not be found!");
-        }
-    }
-
-
-
-    // saves new user into external file
-    public void saveUserToFile(String dateOfBirth, String dateJoined, int userID, String password, String email, String username, String lastName, String firstName, int repScore, String status) throws IOException {
-
-        try {
-            String filePath = "src/Database/Groups.csv";
-            BufferedWriter outputFile = new BufferedWriter(new FileWriter(filePath, true));
-
-            // double to string
-            //String quantityStr = String.valueOf(quantity);
-            //String tradeId = String.valueOf(id);
-
-            // LATER CHECK IF WE CAN PASS INTS DIRECTLY INTO STRING WITHOUT CONVERTING IT TO STRING FIRST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            // format word string
-            String newUser = dateOfBirth + "," + dateJoined + "," +  userID + "," + password + "," + email + "," + username + "," + lastName + "," + firstName + "," + repScore + "," + status;
-            // write word to file
-            outputFile.newLine(); // select next line
-            outputFile.write(newUser); // write word
-
-            // close file
-            outputFile.close();
             // catch exceptions
         } catch (FileNotFoundException e) {
             System.out.println("Specified File could not be found!");

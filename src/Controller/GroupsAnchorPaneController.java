@@ -68,7 +68,8 @@ public class GroupsAnchorPaneController {
             if (selectedGroup.findMember(systemModel.getLoggedUser().getUserName())) { // check if he belongs on that group
                 TextInputDialog dialog = new TextInputDialog("");
                 dialog.setTitle("System Alert");
-                String groupMembers = selectedGroup.membersToString().replaceAll(systemModel.getLoggedUser().getUserName(),"");
+                String groupMembers = selectedGroup.membersToString().replaceAll(systemModel.getLoggedUser().getUserName()+"-","");
+                //System.out.println(groupMembers);
                 dialog.setHeaderText("Schedule a meeting?, A poll will be sent to all group members: " + groupMembers);
                 dialog.setContentText("Enter Date and Time of meeting, separated by a comma:");
 
@@ -106,6 +107,7 @@ public class GroupsAnchorPaneController {
     public void populateGroupsListsView() {
         if(systemModel.getLoggedUser().getStatus().equals("SU")){
             buttonDelete.setVisible(true);
+            buttonMeetingSchedule.setVisible(false);
         }
 
         listViewGroups.getItems().clear();

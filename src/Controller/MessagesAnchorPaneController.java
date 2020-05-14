@@ -23,7 +23,7 @@ public class MessagesAnchorPaneController {
     @FXML private JFXButton buttonApproveApp;
     @FXML private JFXButton buttonRejectApp;
     @FXML private JFXButton buttonAcceptInvitation;
-    @FXML private JFXButton buttonRejecttInvitation;
+    @FXML private JFXButton buttonRejectInvitation;
 
 
     // list views
@@ -80,18 +80,22 @@ public class MessagesAnchorPaneController {
                 systemModel.addProjectToDB(projectName, projectGroup, projectScore);
                 systemModel.saveProjectDBToFile();
 
+                // update model
+                systemModel.removeMessage(invitation.getReceiverUsername(),invitation.getNote());
+                // backup database
+                systemModel.saveMessageDBToFile();
+                // refresh view list
+                populateMessagesListView();
 
             }
-        } else if (event.getSource() == buttonRejecttInvitation) {
+        } else if (event.getSource() == buttonRejectInvitation) {
             // get selected invitation
             Message invitation = (Message) listViewMessages.getSelectionModel().getSelectedItem();
-
             // update database
-            systemModel.getMessagesDB().remove(invitation);
-
+            systemModel.removeMessage(invitation.getReceiverUsername(),invitation.getNote());
+            //systemModel.getMessagesDB().remove(invitation);
             // backup database
             systemModel.saveMessageDBToFile();
-
             // refresh view list
             populateMessagesListView();
 
@@ -133,20 +137,26 @@ public class MessagesAnchorPaneController {
             alertDialog.showAndWait();
 
             // remove application
-            systemModel.getApplicationDB().remove(application);
+            systemModel.removeApplication(application.getApplicantEmail(),application.getApplicantDOB());
+            //systemModel.getApplicationDB().remove(application);
+
+
+
             // backup
             systemModel.saveApplicationDBToFile();
 
             // refresh list
             populateApplicationListsView();
+            populateMessagesSUListView();
 
         } else if (event.getSource() == buttonRejectApp) {
 
-            // remove application
+            // get application
             Application application = (Application) listViewMessages.getSelectionModel().getSelectedItem();
-            systemModel.getApplicationDB().remove(application);
+            // remove app and ADD TO BLACKLIST
+            // remove application
+            systemModel.removeApplication(application.getApplicantEmail(),application.getApplicantDOB());
 
-            // ADD TO BLACKLIST
             Alert alertDialog = new Alert(Alert.AlertType.INFORMATION);
             alertDialog.setTitle("System Alert");
             alertDialog.setHeaderText("Application will be added to blackList");
@@ -155,13 +165,60 @@ public class MessagesAnchorPaneController {
 
             // refresh list
             populateApplicationListsView();
+            populateMessagesSUListView();
         }
     }
 
+    //messagesAnchorPaneController.populateMessagesSUListView(); used by SU
+    //messagesAnchorPaneController.populateApplicationListsView(); used by SU
+
+
+    // populate MessagesListView
+    public void populateMessagesListView() {
+        // disable acceptApp and rejectApp buttons for OU and VIP users
+        buttonRejectApp.setVisible(false);
+        buttonApproveApp.setVisible(false);
+
+        // check that there are messages
+        if(systemModel.getMessagesList(systemModel.getLoggedUser().getUserName())!=null) {
+            // display all messages
+            listViewMessages.getItems().clear();
+            listViewMessages.getItems().addAll(systemModel.getMessagesList(systemModel.getLoggedUser().getUserName()));
+        } else {
+            // ALERT
+            alertDialog.setTitle("System Alert");
+            alertDialog.setHeaderText("Empty Messages");
+            alertDialog.setContentText("you dont have any new Messages for now.");
+            alertDialog.showAndWait();
+        }
+    }
+
+    // populate MessagesListView from visitor complains
+    public void populateMessagesSUListView() {
+
+        // disable acceptApp and rejectApp buttons for OU and VIP users
+        //buttonRejectApp.setVisible(true);
+        //buttonApproveApp.setVisible(true);
+
+        // check that there are messages
+        if(systemModel.getMessagesList(systemModel.getLoggedUser().getUserName())!=null) {
+            // display all messages
+            listViewMessages.getItems().clear();
+            listViewMessages.getItems().addAll(systemModel.getMessagesList(systemModel.getLoggedUser().getUserName()));
+        } else {
+            // ALERT
+            alertDialog.setTitle("System Alert");
+            alertDialog.setHeaderText("Empty Messages");
+            alertDialog.setContentText("you dont have any new Messages for now.");
+            alertDialog.showAndWait();
+        }
+    }
+
+    // populate incoming applications
     public void populateApplicationListsView() {
         // disable invitation buttons for SU
         buttonAcceptInvitation.setVisible(false);
-        buttonRejecttInvitation.setVisible(false);
+        buttonRejectInvitation.setVisible(false);
 
         // check that there are applications
         if(systemModel.getApplicationList()!=null) {
@@ -172,52 +229,7 @@ public class MessagesAnchorPaneController {
             // ALERT
             alertDialog.setTitle("System Alert");
             alertDialog.setHeaderText("Empty Applications");
-            alertDialog.setContentText("you dont have any new applications for now.");
-            alertDialog.showAndWait();
-        }
-    }
-
-    // populate MessagesListView
-    public void populateMessagesSUListView() {
-
-        // disable acceptApp and rejectApp buttons for OU and VIP users
-        buttonRejectApp.setVisible(false);
-        buttonApproveApp.setVisible(false);
-
-
-        // check that there are messages
-        if(systemModel.getMessagesList(systemModel.getLoggedUser().getUserName())!=null) {
-            // display all messages
-            listViewMessages.getItems().clear();
-            listViewMessages.getItems().addAll(systemModel.getMessagesList(systemModel.getLoggedUser().getUserName()));
-        } else {
-            // ALERT
-            alertDialog.setTitle("System Alert");
-            alertDialog.setHeaderText("Empty Messages");
-            alertDialog.setContentText("you dont have any new Messages for now.");
-            alertDialog.showAndWait();
-        }
-    }
-
-
-    // populate MessagesListView
-    public void populateMessagesListView() {
-
-        // disable acceptApp and rejectApp buttons for OU and VIP users
-        buttonAcceptInvitation.setVisible(false);
-        buttonRejecttInvitation.setVisible(false);
-
-
-        // check that there are messages
-        if(systemModel.getMessagesList(systemModel.getLoggedUser().getUserName())!=null) {
-            // display all messages
-            listViewMessages.getItems().clear();
-            listViewMessages.getItems().addAll(systemModel.getMessagesList(systemModel.getLoggedUser().getUserName()));
-        } else {
-            // ALERT
-            alertDialog.setTitle("System Alert");
-            alertDialog.setHeaderText("Empty Messages");
-            alertDialog.setContentText("you dont have any new Messages for now.");
+            alertDialog.setContentText("you don't have any new applications for now.");
             alertDialog.showAndWait();
         }
     }

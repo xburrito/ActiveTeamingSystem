@@ -23,6 +23,7 @@
          </children>
       </VBox>
       <JFXListView fx:id="listViewGroups" layoutX="144.0" layoutY="188.0" prefHeight="368.0" prefWidth="643.0" />
-      <JFXButton layoutX="796.0" layoutY="360.0" text="Delete" />
+      <JFXButton fx:id="buttonDelete" layoutX="794.0" layoutY="350.0" onAction="#handleButtonAction" text="Delete" />
+      <JFXButton fx:id="buttonMeetingSchedule" layoutX="403.0" layoutY="566.0" onAction="#handleButtonAction" text="Schedule a Meeting" />
    </children>
 </AnchorPane>

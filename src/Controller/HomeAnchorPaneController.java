@@ -22,7 +22,7 @@ public class HomeAnchorPaneController {
     private ActiveTeamingSystem systemModel;
 
     //Buttons
-    @FXML private JFXButton buttonBlacklist;
+    @FXML private JFXButton buttonBlackList;
     @FXML private JFXButton buttonCollaborationRequest;
     @FXML private JFXButton buttonSendMessage;
     @FXML private JFXButton buttonCompliment;
@@ -42,13 +42,12 @@ public class HomeAnchorPaneController {
         System.out.println("Home Controller contains Main Model? " + (this.systemModel!=null));
 
         // also, initialize required fields
-        populateProfileListsView();
 
     }
 
     // handle button action of Browse View
     @FXML private void handleButtonAction(ActionEvent event) throws IOException {
-        if (event.getSource() == buttonBlacklist) {
+        if (event.getSource() == buttonBlackList) {
             TopProfile profile = (TopProfile) listViewProfiles.getSelectionModel().getSelectedItem();
             User user = systemModel.findUser(profile.getUserName());
 
@@ -61,7 +60,8 @@ public class HomeAnchorPaneController {
             // add user to black list
             systemModel.getBlackList().add(user);
             // update db
-            systemModel.getUserBD().remove(user);
+            systemModel.removeUser(user.getUserName());
+            //systemModel.getUserBD().remove(user);
             // backup database
             systemModel.saveUserDBToFile();
 
@@ -144,6 +144,15 @@ public class HomeAnchorPaneController {
     }
 
     public void populateProfileListsView(){
+
+        if(systemModel.getLoggedUser().getStatus().equals("SU")){
+            buttonCollaborationRequest.setVisible(false);
+            buttonCompliment.setVisible(false);
+        } else {
+            buttonBlackList.setVisible(false);
+        }
+
+        listViewProfiles.getItems().clear();
         systemModel.addProfilesToList();
         listViewProfiles.getItems().addAll(systemModel.getProfiles());
     }

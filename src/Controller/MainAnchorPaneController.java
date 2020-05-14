@@ -85,6 +85,8 @@ public class MainAnchorPaneController {
         systemModel.loadFileToProjectDB();
         // get referral records from external file
         systemModel.loadFileToReferralDB();
+        // get poll records from external file
+        systemModel.loadFileToPollDB();
 
 
         // CONNECT this MainController and the Main model to all other controllers
@@ -114,6 +116,7 @@ public class MainAnchorPaneController {
             buttonLogOut.setStyle(buttonDefaultColor);
 
             // show home view
+            homeAnchorPaneController.populateProfileListsView();
             homeAnchorPane.toFront();
         }
         else if (event.getSource() == buttonMessages) {
@@ -171,6 +174,7 @@ public class MainAnchorPaneController {
             buttonLogOut.setStyle(buttonDefaultColor);
 
             votingReputationAnchorPane.toFront();
+            votingReputationAnchorPaneController.populateMeetingsListsView();
         }
         else if (event.getSource() == buttonSettings) {
             buttonHomePage.setStyle(buttonDefaultColor);
@@ -233,6 +237,8 @@ public class MainAnchorPaneController {
     public void displayMainView(){
         contentAnchorPane.toFront();
         sidebarAnchorPane.toFront();
+        // populate fist view that is shown when user logs in
+        homeAnchorPaneController.populateProfileListsView();
     }
 
     // brings browseAnchorPane to the front.

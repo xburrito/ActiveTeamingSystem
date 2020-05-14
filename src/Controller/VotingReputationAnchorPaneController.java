@@ -49,6 +49,10 @@ public class VotingReputationAnchorPaneController {
             alertDialog.setContentText("Click Ok to continue");
             alertDialog.showAndWait();
 
+            //remove poll
+            systemModel.removePoll(selectedPoll);
+            populateMeetingsListsView();
+
         } else if (event.getSource() == buttonReject) {
 
             Alert alertDialog = new Alert(Alert.AlertType.INFORMATION);

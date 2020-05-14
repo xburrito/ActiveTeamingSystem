@@ -60,9 +60,9 @@ public class Poll {
 
     // returns list of members in form of a string
     public String membersToString(){
-        System.out.println(members==null);
+        System.out.println(getMembers()==null);
         StringJoiner joiner = new StringJoiner("-");
-        for(User user: members){
+        for(User user: getMembers()){
             joiner.add(user.getUserName());
         }
         return joiner.toString();

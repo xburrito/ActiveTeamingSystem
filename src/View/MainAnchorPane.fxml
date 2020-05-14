@@ -27,7 +27,7 @@
             <Button fx:id="buttonMessages" alignment="CENTER" graphicTextGap="21.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="258.0" style="-fx-background-color: #00C5FF;" text="Messages" textFill="WHITE" />
             <Button fx:id="buttonGroups" alignment="CENTER" graphicTextGap="21.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="258.0" style="-fx-background-color: #00C5FF;" text="Groups" textFill="WHITE" />
             <Button fx:id="buttonProjects" alignment="CENTER" graphicTextGap="21.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="258.0" style="-fx-background-color: #00C5FF;" text="Projects" textFill="WHITE" />
-            <Button fx:id="buttonVotingReputation" alignment="CENTER" graphicTextGap="21.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="258.0" style="-fx-background-color: #00C5FF;" text="Voting / Reputation" textFill="WHITE">
+            <Button fx:id="buttonVotingReputation" alignment="CENTER" graphicTextGap="21.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="258.0" style="-fx-background-color: #00C5FF;" text="Meetings Poll" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

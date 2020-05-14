@@ -50,22 +50,22 @@ $ git clone https://github.com/ZGabriell/ActiveTeamingSystem && cd ActiveTeaming
 Based on the user's status, they will have access to a variety of activities available on the software.
 Some activities are:
 
-**Browse** - View the top profiles as well as top projects. There is an option on the right side to expand for more results.
+- **Browse** - View the top profiles as well as top projects. There is an option on the right side to expand for more results.
 
-**Register** - Provides a form asking basic information: Name, Email, D.O.B. and referral. Make sure registering email has been referred first before creating an account with that email.
+- **Register** - Provides a form asking basic information: Name, Email, D.O.B. and referral. Make sure registering email has been referred first before creating an account with that email.
 
-**log in** - To gain login access, upon registering, have the SU approve of the application in order to be able to log in. The SU should receive a message to stamp an approval on the applicant's request.
+- **log in** - To gain login access, upon registering, have the SU approve of the application in order to be able to log in. The SU should receive a message to stamp an approval on the applicant's request.
 
-**Home Menu** - You should be able to send a message, send a collaboration request, as well as compliment over the highlighted user of choice. 
+- **Home Menu** - You should be able to send a message, send a collaboration request, as well as compliment over the highlighted user of choice. 
 
-**Messages** - You should be able to view messages in your inbox. 
+- **Messages** - You should be able to view messages in your inbox. 
 
-**Groups** - You can highlight a group and schedule a meeting (Currently lacks functionality)
+- **Groups** - You can highlight a group and schedule a meeting (Currently lacks functionality)
 
-**Projects** - Will be properly displayed. (Lacks functionality to keep specific ones private)
+- **Projects** - Will be properly displayed. (Lacks functionality to keep specific ones private)
 
-**Create poll** - If meeting polls are present, you can accept or reject time suggested. 
+- **Create poll** - If meeting polls are present, you can accept or reject time suggested. 
 
-**Vote** - (Currently lacks functionality)
+- **Vote** - (Currently lacks functionality)
 
-**Increase reputation** - (Currently lacks functionality)
+- **Increase reputation** - (Currently lacks functionality)

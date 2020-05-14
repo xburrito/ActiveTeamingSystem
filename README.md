@@ -55,19 +55,19 @@ Some activities are:
 - **Browse** - View the top profiles as well as top projects. There is an option on the right side to expand for more results.
 ![picture](https://github.com/ZGabriell/ActiveTeamingSystem/blob/master/screenshots/Screen%20Shot%202020-05-13%20at%2011.24.50%20PM.png?raw=true)
 - **Register** - Provides a form asking basic information: Name, Email, D.O.B. and referral. Make sure registering email has been referred first before creating an account with that email.
-
+![picture](https://github.com/ZGabriell/ActiveTeamingSystem/blob/master/screenshots/Screen%20Shot%202020-05-13%20at%2011.23.23%20PM.png?raw=true)
 - **log in** - To gain login access, upon registering, have the SU approve of the application in order to be able to log in. The SU should receive a message to stamp an approval on the applicant's request.
-
+![picture](https://github.com/ZGabriell/ActiveTeamingSystem/blob/master/screenshots/Screen%20Shot%202020-05-13%20at%2011.23.11%20PM.png?raw=true)
 - **Home Menu** - You should be able to send a message, send a collaboration request, as well as compliment over the highlighted user of choice. 
-
+![picture](https://github.com/ZGabriell/ActiveTeamingSystem/blob/master/screenshots/Screen%20Shot%202020-05-13%20at%2011.27.22%20PM.png?raw=true)
 - **Messages** - You should be able to view messages in your inbox. 
-
+![picture](https://github.com/ZGabriell/ActiveTeamingSystem/blob/master/screenshots/Screen%20Shot%202020-05-13%20at%2011.27.30%20PM.png?raw=true)
 - **Groups** - You can highlight a group and schedule a meeting (Currently lacks functionality)
-
+![picture](https://github.com/ZGabriell/ActiveTeamingSystem/blob/master/screenshots/Screen%20Shot%202020-05-13%20at%2011.27.44%20PM.png?raw=true)
 - **Projects** - Will be properly displayed. (Lacks functionality to keep specific ones private)
-
+![picture](https://github.com/ZGabriell/ActiveTeamingSystem/blob/master/screenshots/Screen%20Shot%202020-05-13%20at%2011.24.30%20PM.png?raw=true)
 - **Create poll** - If meeting polls are present, you can accept or reject time suggested. 
-
+![picture](https://github.com/ZGabriell/ActiveTeamingSystem/blob/master/screenshots/Screen%20Shot%202020-05-13%20at%2011.24.35%20PM.png?raw=true)
 - **Vote** - (Currently lacks functionality)
-
 - **Increase reputation** - (Currently lacks functionality)
+![picture](https://github.com/ZGabriell/ActiveTeamingSystem/blob/master/screenshots/Screen%20Shot%202020-05-13%20at%2011.27.22%20PM.png?raw=true)

@@ -29,7 +29,7 @@ $ git clone https://github.com/ZGabriell/ActiveTeamingSystem && cd ActiveTeaming
 
 2. Compile and run
 
-3. At the login window, click register underneath to create an account. {If you already have one, skip to part 7}
+3. At the login window, click register underneath to create an account. **{If you already have one, skip to part 7}**
 
 4. Fill out registration form. Make sure reference is valid and properly paired with their status and hit register now.
 

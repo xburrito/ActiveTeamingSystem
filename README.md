@@ -4,7 +4,7 @@
 
 Team Q Participants:
 
-- Gabriel Espinoza (**RECEIVE ALL BONUS POINTS**)
+- Gabriel Espinoza (**BONUS POINTS**)
 - Albert Chang
 - Orion Cadri
 - Ide
